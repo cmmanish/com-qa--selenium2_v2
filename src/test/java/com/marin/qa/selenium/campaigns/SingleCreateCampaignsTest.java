@@ -1,39 +1,36 @@
 package com.marin.qa.selenium.campaigns;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.Calendar;
-
-import org.apache.log4j.Logger;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import com.marin.qa.selenium.WebdriverBaseClass;
+import com.marin.qa.selenium.common.MarinApp;
 import com.marin.qa.selenium.common.QaRandom;
 import com.marin.qa.selenium.pageObjects.bubble.Filter;
-import com.marin.qa.selenium.pageObjects.pages.ActivityLogPage;
-import com.marin.qa.selenium.pageObjects.pages.CampaignSettingsPage;
-import com.marin.qa.selenium.pageObjects.pages.CampaignsPage;
-import com.marin.qa.selenium.pageObjects.pages.HomePage;
-import com.marin.qa.selenium.pageObjects.pages.NewCampaignPage;
-import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage;
+import com.marin.qa.selenium.pageObjects.pages.*;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignPriority;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignStatus;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignType;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CountryOfSale;
-import com.marin.qa.selenium.pageObjects.pages.SingleCampaignPage;
+import org.apache.log4j.Logger;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+
+import java.util.Calendar;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
     public static Logger log = Logger.getLogger(SingleCreateCampaignsTest.class);
-    
     public QaRandom random = QaRandom.getInstance();
+
+    public static WebDriver driver = MarinApp.getApp();
 
     @BeforeClass
     public static void testSetUp() {
         log.info("<--------- Start Setup Test --------->");
-        LoginSuccessful();
+        loginSuccessful(driver);
         clearAllPendingChanges(driver);
         log.info("<--------- End Setup Test --------->");
     }
@@ -42,7 +39,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
     public static void cleanup() {
         log.info("<--------- Start Logout Test --------->");
         clearAllPendingChanges(driver);
-        logoutSuccessful();
+        logoutSuccessful(driver);
         driver.close();
         log.info("<--------- End Logout Test --------->");
     }

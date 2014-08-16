@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class HomePage extends AbstractPage {
 
     private static HomePage instance;
-    static Logger log = Logger.getLogger(HomePage.class);
+    public static Logger log = Logger.getLogger(HomePage.class);
 
     /**
      * Private constructor prevents construction outside this class.

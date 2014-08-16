@@ -7,7 +7,7 @@ import com.thoughtworks.selenium.Selenium;
 
 public class NewCampaignPage extends AbstractPage {
 
-    static Logger log = Logger.getLogger(NewCampaignPage.class);
+    public static Logger log = Logger.getLogger(NewCampaignPage.class);
     private static NewCampaignPage instance;
 
     /**

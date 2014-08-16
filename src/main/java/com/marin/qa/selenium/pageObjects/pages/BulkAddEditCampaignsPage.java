@@ -6,7 +6,7 @@ import com.thoughtworks.selenium.Selenium;
 public class BulkAddEditCampaignsPage extends AbstractPage {
 
 	private static BulkAddEditCampaignsPage instance;
-	static Logger log = Logger.getLogger(BulkAddEditCampaignsPage.class);
+    public static Logger log = Logger.getLogger(BulkAddEditCampaignsPage.class);
 	public final String POST_NOW_ID = "postNowText";
 	public final String PROGRESS_GRID_CONTAINER = "#progress_grid_container";
 	

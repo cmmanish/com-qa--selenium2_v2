@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 public class CampaignsPage extends AbstractPage{
 
-	static Logger log = Logger.getLogger(CampaignsPage.class);
+    public static Logger log = Logger.getLogger(CampaignsPage.class);
 	private static CampaignsPage instance;
 
 	/**

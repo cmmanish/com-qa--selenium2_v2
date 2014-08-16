@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class LoginPage extends AbstractPage {
 
     private static LoginPage instance;
-    protected final Logger log = Logger.getLogger(LoginPage.class);
+    public final Logger log = Logger.getLogger(LoginPage.class);
     public static final String company = "\u00a9 Marin Software";
 
     /**

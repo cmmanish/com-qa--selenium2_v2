@@ -12,7 +12,7 @@ import com.thoughtworks.selenium.SeleniumException;
 
 public abstract class AbstractPage {
 
-    static Logger log = Logger.getLogger(AbstractPage.class);
+    public static Logger log = Logger.getLogger(AbstractPage.class);
     public static final long LONG_PAGE_TIMEOUT = 121000;
     public static final String ELEMENT_TIMEOUT = "65000";
     public static final String AJAX_TIMEOUT = "40000";
