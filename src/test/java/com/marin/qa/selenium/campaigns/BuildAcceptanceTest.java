@@ -17,13 +17,14 @@ public class BuildAcceptanceTest extends WebdriverBaseClass {
 
     @BeforeClass
     public static void testSetUp() {
+        log.info("Now Running BuildAcceptanceTest Suite");
         log.info("<--------- Start Setup Test --------->");
         loginSuccessful(driver);
         clearAllPendingChanges(driver);
         log.info("<--------- End Setup Test --------->");
     }
 
-   @AfterClass
+    @AfterClass
     public static void cleanup() {
         log.info("<--------- Start Logout Test --------->");
         clearAllPendingChanges(driver);

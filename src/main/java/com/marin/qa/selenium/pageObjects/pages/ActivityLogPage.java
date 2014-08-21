@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
+
 public class ActivityLogPage extends AbstractPage {
 
     public static Logger log = Logger.getLogger(ActivityLogPage.class);
@@ -58,7 +59,17 @@ public class ActivityLogPage extends AbstractPage {
         }
 
     }
-    
+
+    /**
+     * This method set to return Label text
+     *
+     * @author mbeider
+     * @param Weddriver
+     * @param label
+     * @return String
+     *
+     */
+
     public String getInfo(WebDriver driver, Label label) {
 
         String query = "return $('" + label.getLocator() + "').text().trim();";
@@ -144,7 +155,7 @@ public class ActivityLogPage extends AbstractPage {
                 waitForPageToLoad(driver,LONG_PAGE_TIMEOUT);
             }
         }
-
+        wait(1500);
         return instance;
 
     }
@@ -247,23 +258,32 @@ public class ActivityLogPage extends AbstractPage {
      */
     public static enum Column {
 
-        CheckBox("#left_table input#id_gridCheckboxAll:checkbox", "Check Box All"), 
-        Publisher(".good", "ReportLabel"),
-        ID(".dataGridNotice", "No Data Alert"),
-        Description(".good", "ReportLabel"),
-        CreationDate(".good", "ReportLabel"),
-        User(".good", "ReportLabel");
+        CheckBox("#left_table input#id_gridCheckboxAll:checkbox", "#left_table tbody input[name=\"id[]\"]:checkbox", "CheckBox"),
+        ID("#left_table #th_id_display a.sort_link", "#left_table tbody td:nth-child(2)", "ID"),
+        Publisher("#right_table #th_publisher a.sort_link", "#right_table tbody td:nth-child(1)", "Publisher"),
+        Description("#right_table #th_description a.sort_link", "#right_table tbody td:nth-child(2)", "Description"),
+        CreationDate("#right_table #th_creation_date a.sort_link", "#right_table tbody td:nth-child(3)", "Creation Date"),
+        User("#right_table #th_user a.sort_link", "#right_table tbody td:nth-child(4)", "User"),
+        Status("#right_table #th_activity_log_status a.sort_link", "#right_table tbody td:nth-child(5)", "Status");
 
-        private String locator;
+        private String tableLocator = "#operation_table ";
+        private String headerLocator;
+        private String cellLocator;
         private String description;
 
-        private Column(String locator, String description) {
-            this.locator = locator;
+        private Column(String headerLocator, String cellLocator, String description) {
+            this.headerLocator = headerLocator;
+            this.cellLocator = cellLocator;
             this.description = description;
         }
 
-        public String getLocator() {
-            return this.locator;
+
+        public String getHeaderLocator() {
+            return this.tableLocator + this.headerLocator;
+        }
+
+        public String getCellLocator() {
+            return this.tableLocator + this.cellLocator;
         }
 
         @Override
@@ -271,6 +291,134 @@ public class ActivityLogPage extends AbstractPage {
             return this.description;
         }
 
+
+    }
+    
+    /**
+     * This Method set to return information from any column by row index
+     * 
+     * @author mbeider 
+     * @param selenium
+     * @param index
+     * @return String
+     * 
+     */
+    public String getInfo(WebDriver driver, Column column, int index) {
+    
+        // This Method set to get Info from column based on index
+        String query = "return $('" + column.getCellLocator() + "').eq(" + index + ").text();";
+        changeElementBackground(driver, column.getCellLocator() + ":eq(" + index + ")");
+        String info = (String) ((JavascriptExecutor) driver).executeScript(query);
+        removeElementBackground(driver, column.getCellLocator() + ":eq(" + index + ")");
+        return info;
+    }
+
+    /**
+     * This Method set to return information from searched Column by any column information
+     * 
+     * @author mbeider 
+     * @param selenium
+     * @param searchedColumn
+     * @param column
+     * @param option
+     * @return String
+     * 
+     */
+    public String getInfo(WebDriver driver, Column searchedColumn, Column givenColumn, String option) {
+    
+        boolean flag = false;
+        int row;
+        String info = "";
+        String query = "return $('" + Column.ID.getCellLocator() + "').size();";
+        //waitForAjaxRequestDone(selenium, AJAX_TIMEOUT);
+    
+        // Row count based on "ID" column since it's always present on Activity Log Grid
+        long retval = (Long) ((JavascriptExecutor) driver).executeScript(query);
+        
+        //long l = Long.parseLong(retval);
+        int rowNumber = (int) retval; 
+         
+        // Main purpose of the loop to find index of row that contains Column information
+        for (row = 0; row < rowNumber; row++) {
+            String temp = getInfo(driver, givenColumn, row);
+            if (option.equalsIgnoreCase(temp) == true) {
+                flag = true;
+                break;
+            }
+        }
+    
+        // This Method set to get info from searched column
+        if (flag) {
+            info = getInfo(driver, searchedColumn, row);
+        }
+        else {
+            log.info("Can't get information from \"" + searchedColumn + "\" Column with information \"" + option + "\" in \"" + givenColumn.toString() + "\" Column in \"" + this.getClass().getSimpleName()    + "\"");
+        }
+    
+        return info;
+    
+    }
+
+    /**
+     * This Method set to check CarpOp check box by information in any column
+     * 
+     * @author mbeider 
+     * @param selenium
+     * @param column
+     * @param option
+     * @return boolean
+     * 
+     */
+    public boolean check(WebDriver driver, Column column, String option) {
+
+        int rowNumber = 0;
+        int row = 0;
+        boolean flag = false;
+        String query = "$('" + Column.ID.getCellLocator() + "').size();";
+        waitForAjaxRequestDone(driver, AJAX_TIMEOUT);
+
+        // Row count based on "ID" column since it's always present on Activity Log Grid
+        long retval = (Long) ((JavascriptExecutor) driver).executeScript(query);
+        
+        //long l = Long.parseLong(retval);
+        rowNumber = (int) retval; 
+        // Main purpose of the loop to find index of row that contains Column information
+        for (row = 0; row < rowNumber; row++) {
+            String info = getInfo(driver, column, row);
+            if (option.equalsIgnoreCase(info)) {
+                flag = true;
+                break;
+            }
+        }
+
+        // This Method set to check row check box by row index
+        if (flag) {
+            check(driver, row);
+            log.info("Check CheckBox of CarpOp with \"" + option + "\" information in \"" + column.toString() + "\" Column in \"" + this.getClass().getSimpleName() + "\"");
+        }
+        else {
+            log.info("Can't find CheckBox of CarpOp with \"" + option + "\" information in \"" + column.toString() + "\" Column in \"" + this.getClass().getSimpleName() + "\"");
+        }
+
+        return flag;
+
+    }
+    
+    /**
+     *  This Method set to check row check box by row index
+     * 
+     * @author mbeider 
+     * @param selenium
+     * @param index
+     * @return void
+     * 
+     */
+    public void check(WebDriver driver, int index) {
+        
+        String query = "$('" + Column.CheckBox.getCellLocator() + "').eq(" + index + ").trigger('click').change();";
+        // This Method set to check row check box by row index
+        String re = (String) ((JavascriptExecutor) driver).executeScript(query);
+        
     }
 
     /**
@@ -359,8 +507,8 @@ public class ActivityLogPage extends AbstractPage {
 
     public ActivityLogPage check(WebDriver driver, Column checkbox) {
         
-        String query = "$('" + checkbox.getLocator() + "').trigger('click').change();";
-        if(isElementPresent(driver, checkbox.getLocator())){
+        String query = "$('" + checkbox.getCellLocator() + "').trigger('click').change();";
+        if(isElementPresent(driver, checkbox.getCellLocator())){
             ((JavascriptExecutor) driver).executeScript(query);
             waitForAjaxRequestDone(driver, AJAX_TIMEOUT);
             log.info("Click on \"" + checkbox.toString() + "\" CheckBox in \"" + this.getClass().getSimpleName() + "\"");

@@ -19,11 +19,20 @@ import java.util.Calendar;
 import static org.junit.Assert.assertEquals;
 
 
+
+
+
 public class SingleCampaignsTest extends WebdriverBaseClass {
 
     public static Logger log = Logger.getLogger(SingleCampaignsTest.class);
     public static WebDriver driver = MarinApp.getApp();
     public QaRandom random = QaRandom.getInstance();
+
+
+    public SingleCampaignsTest(){
+
+        log.info("Now Running SingleCampaignsTest Suite");
+    }
 
     @BeforeClass
     public static void testSetUp() {

@@ -1,280 +1,355 @@
 package com.marin.qa.selenium.pageObjects.pages;
 
 import org.apache.log4j.Logger;
-import com.thoughtworks.selenium.Selenium;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 
 public class BulkAddEditCampaignsPage extends AbstractPage {
 
-	private static BulkAddEditCampaignsPage instance;
+    private static BulkAddEditCampaignsPage instance;
     public static Logger log = Logger.getLogger(BulkAddEditCampaignsPage.class);
-	public final String POST_NOW_ID = "postNowText";
-	public final String PROGRESS_GRID_CONTAINER = "#progress_grid_container";
-	
-	/**
-	  * Private constructor prevents construction outside this class.
-	*/
-	private BulkAddEditCampaignsPage(){}
-	 
-	public static synchronized BulkAddEditCampaignsPage getInstance(){
-		
-		if (instance == null){
-			instance = new BulkAddEditCampaignsPage();
-		}
-	 
-		return instance;
-	}
+    public final String POST_NOW_ID = "postNowText";
+    public final String PROGRESS_GRID_CONTAINER = "#progress_grid_container";
 
-	/**
-	 * Label Element as list of all labels on page
-	 * @version 2.00
-	 * @param locator as jQuery mapping for Label element
-	 * @param description as description for Label element
-	 * @author mmadhusoodan
-	 */
-	public static enum Label {
-		
-		Alert(".bad", "Alert");
+    /**
+     * Private constructor prevents construction outside this class.
+     */
+    private BulkAddEditCampaignsPage() {
+    }
 
-		private String locator;
-		private String description;
+    public static synchronized BulkAddEditCampaignsPage getInstance() {
 
-		private Label(String locator, String description) {
-			this.locator = locator;
-			this.description = description;
-		}
+        if (instance == null) {
+            instance = new BulkAddEditCampaignsPage();
+        }
 
-		public String getLocator() {
-			return this.locator;
-		}
+        return instance;
+    }
 
-		@Override
-	    public String toString() {
-	        return this.description;
-	    }
+    /**
+     * Label Element as list of all labels on page
+     *
+     * @param locator     as jQuery mapping for Label element
+     * @param description as description for Label element
+     * @author mmadhusoodan
+     * @version 2.00
+     */
+    public static enum Label {
 
-	}
+        Alert(".bad", "Alert"),
+        Success("#campaign_table_flash","Bulk upload is processing. See the Activity Log for details.");
 
-	/**
-	 * Link Element as list of all links on page
-	 * @version 2.00
-	 * @param locator as jQuery mapping for Tabs element locator 
-	 * @param spinner as jQuery mapping for spinner 
-	 * @param pageLoad as jQuery mapping for pageLoad 
-	 * @param description as description for Link element
-	 * @author mmadhusoodan
-	 */
-	public static enum Link {
-		
-		Campaigns("#left_related_tasks a:eq(0)",  null, true, "Campaigns"),
-		Groups("#left_related_tasks a:eq(1)", null, true, "Groups"),
-		Keywords("#left_related_tasks a:eq(2)", null, true, "Keywords"),
-		Creatives("#left_related_tasks a:eq(3)",  null, true, "Creatives"),
-		Placements("#left_related_tasks a:eq(4)", null, true, "Placements"),
-		ProductTargets("#left_related_tasks a:eq(5)", null, true, "Product Targets"),
-		Revenue("#left_related_tasks a:eq(6)", null, true, "Revenue");
-		
-		private String locator;
-		private String spinner;
-		private boolean pageLoad;
-		private String description;
+        private String locator;
+        private String description;
 
-		private Link(String locator, String spinner, boolean pageLoad, String description) {
-			this.locator = locator;
-			this.spinner = spinner;
-			this.pageLoad = pageLoad;
-			this.description = description;
-		}
+        private Label(String locator, String description) {
+            this.locator = locator;
+            this.description = description;
+        }
 
-		public String getLocator() {
-			return this.locator;
-		}
+        public String getLocator() {
+            return this.locator;
+        }
 
-		public String getSpinner() {
-			return this.spinner;
-		}
+        @Override
+        public String toString() {
+            return this.description;
+        }
 
-		public boolean getPageLoad() {
-			return this.pageLoad;
-		}
-		
-		@Override
-	    public String toString() {
-	        return this.description;
-	    }
+    }
 
-	}
+    String getInfo(WebDriver driver, Label label){
 
-	/**
-	 * Radio Element as list of all radio buttons on page
-	 * @version 2.00
-	 * @param locator as jQuery mapping for Radio Button element locator 
-	 * @param value as jQuery mapping for radio button value
-	 * @param spinner as jQuery mapping for spinner 
-	 * @param pageLoad as jQuery mapping for pageLoad 
-	 * @param description as description for Radio button element
-	 * @author mmadhusoodan
-	 */
-	public static enum Radio {
-		
-		ToBeSent("[name=\"post_to_publisher_options\"]", "PENDING", null, false, "Upload changes in \"To be sent\" status"),
-		Held("[name=\"post_to_publisher_options\"]", "PAUSED", null, false, "Upload changes in \"Held\" status");
+        String query = "return $('" + label.getLocator() + "').text().trim();";
+        //Get Label text
+        String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
+        return retval;
 
-	   	private String locator;
-	   	private String value;
-		private String spinner;
-		private boolean pageLoad;
-		private String description;
+    }
 
-		private Radio(String locator, String value, String spinner, boolean pageLoad, String description) {
-			this.locator = locator;
-			this.value = value;
-			this.spinner = spinner;
-			this.pageLoad = pageLoad;
-			this.description = description;
-		}
+    /**
+     * Link Element as list of all links on page
+     *
+     * @param locator     as jQuery mapping for Tabs element locator
+     * @param spinner     as jQuery mapping for spinner
+     * @param pageLoad    as jQuery mapping for pageLoad
+     * @param description as description for Link element
+     * @author mmadhusoodan
+     * @version 2.00
+     */
+    public static enum Link {
 
-		public String getLocator() {
-			return this.locator;
-		}
+        Campaigns("#left_related_tasks a:eq(0)", null, true, "Campaigns"),
+        Groups("#left_related_tasks a:eq(1)", null, true, "Groups"),
+        Keywords("#left_related_tasks a:eq(2)", null, true, "Keywords"),
+        Creatives("#left_related_tasks a:eq(3)", null, true, "Creatives"),
+        Placements("#left_related_tasks a:eq(4)", null, true, "Placements"),
+        ProductTargets("#left_related_tasks a:eq(5)", null, true, "Product Targets"),
+        Revenue("#left_related_tasks a:eq(6)", null, true, "Revenue");
 
-		public String getValue() {
-			return this.value;
-		}
+        private String locator;
+        private String spinner;
+        private boolean pageLoad;
+        private String description;
 
-		public String getSpinner() {
-			return this.spinner;
-		}
+        private Link(String locator, String spinner, boolean pageLoad, String description) {
+            this.locator = locator;
+            this.spinner = spinner;
+            this.pageLoad = pageLoad;
+            this.description = description;
+        }
 
-		public boolean getPageLoad() {
-			return this.pageLoad;
-		}
-		
-		@Override
-	    public String toString() {
-	        return this.description;
-	    }
+        public String getLocator() {
+            return this.locator;
+        }
 
-	}
+        public String getSpinner() {
+            return this.spinner;
+        }
 
-	/**
-	 * DropDownMenu Element as list of drop down menus on page
-	 * @version 2.00
-	 * @param locator as jQuery mapping for DropDown Menu element locator 
-	 * @param spinner as jQuery mapping for spinner 
-	 * @param pageLoad as jQuery mapping for pageLoad 
-	 * @param description as description for DropDownMenu element
-	 * @author mmadhusoodan
-	 */
-	public static enum DropDownMenu {
-		
-		PublisherAccount("[name=\"publisher_account_id\"]", null, false, "Publisher Account");
+        public boolean getPageLoad() {
+            return this.pageLoad;
+        }
 
-		private String locator;
-		private String spinner;
-		private boolean pageLoad;
-		private String description;
+        @Override
+        public String toString() {
+            return this.description;
+        }
 
-		private DropDownMenu(String locator, String spinner, boolean pageLoad, String description) {
-			this.locator = locator;
-			this.spinner = spinner;
-			this.pageLoad = pageLoad;
-			this.description = description;
-		}
+    }
 
-		public String getLocator() {
-			return this.locator;
-		}
+    /**
+     * Radio Element as list of all radio buttons on page
+     *
+     * @param locator     as jQuery mapping for Radio Button element locator
+     * @param value       as jQuery mapping for radio button value
+     * @param spinner     as jQuery mapping for spinner
+     * @param pageLoad    as jQuery mapping for pageLoad
+     * @param description as description for Radio button element
+     * @author mmadhusoodan
+     * @version 2.00
+     */
+    public static enum Radio {
 
-		public String getSpinner() {
-			return this.spinner;
-		}
+        ToBeSent("[name=\"post_to_publisher_options\"]", "PENDING", null, false, "Upload changes in \"To be sent\" status"),
+        Held("[name=\"post_to_publisher_options\"]", "PAUSED", null, false, "Upload changes in \"Held\" status");
 
-		public boolean getPageLoad() {
-			return this.pageLoad;
-		}
-		
-		@Override
-	    public String toString() {
-	        return this.description;
-	    }
+        private String locator;
+        private String value;
+        private String spinner;
+        private boolean pageLoad;
+        private String description;
 
-	}
+        private Radio(String locator, String value, String spinner, boolean pageLoad, String description) {
+            this.locator = locator;
+            this.value = value;
+            this.spinner = spinner;
+            this.pageLoad = pageLoad;
+            this.description = description;
+        }
 
-	/**
-	 * Text Input Element as list of all text inputs on page
-	 * @version 2.00
-	 * @param locator as jQuery mapping for text input element
-	 * @param description as description for Text Input element
-	 * @author mmadhusoodan
-	 */
-	public static enum TextArea {
-		
-		Campaigns("[name=\"user_bulk\"]", "Campaigns");
+        public String getLocator() {
+            return this.locator;
+        }
 
-		private String locator;
-		private String description;
+        public String getValue() {
+            return this.value;
+        }
 
-		private TextArea(String locator, String description) {
-			this.locator = locator;
-			this.description = description;
-		}
+        public String getSpinner() {
+            return this.spinner;
+        }
 
-		public String getLocator() {
-			return this.locator;
-		}
+        public boolean getPageLoad() {
+            return this.pageLoad;
+        }
 
-		@Override
-	    public String toString() {
-	        return this.description;
-	    }
+        @Override
+        public String toString() {
+            return this.description;
+        }
 
-	}
+    }
 
-	/**
-	 * Button Element as list of all buttons on page
-	 * @version 2.00
-	 * @param locator as jQuery mapping for Button element locator 
-	 * @param spinner as jQuery mapping for spinner 
-	 * @param pageLoad as jQuery mapping for pageLoad 
-	 * @param description as description for Button element
-	 * @author mmadhusoodan
-	 */
-	public static enum Button {
-		
-		Process("[name=\"process\"]", "#spin_span", true, "Process"),
-		ProcessError("[name=\"process\"]", "#spin_span", true, "Process"),
-		Cancel("[name=\"cancel\"]", null, false, "Cancel");
-		
-	   	private String locator;
-		private String spinner;
-		private boolean pageLoad;
-		private String description;
-	
-		private Button(String locator, String spinner, boolean pageLoad, String description) {
-			this.locator = locator;
-			this.spinner = spinner;
-			this.pageLoad = pageLoad;
-			this.description = description;
-			
-		}
-	
-		public String getLocator() {
-			return this.locator;
-		}
-	
-		public String getSpinner() {
-			return this.spinner;
-		}
-	
-		public boolean getPageLoad() {
-			return this.pageLoad;
-		}
-		
-		@Override
-	    public String toString() {
-	        return this.description;
-	    }
-	
-	}
+    /**
+     * DropDownMenu Element as list of drop down menus on page
+     *
+     * @param locator     as jQuery mapping for DropDown Menu element locator
+     * @param spinner     as jQuery mapping for spinner
+     * @param pageLoad    as jQuery mapping for pageLoad
+     * @param description as description for DropDownMenu element
+     * @author mmadhusoodan
+     * @version 2.00
+     */
+    public static enum DropDownMenu {
+
+        PublisherAccount("[name=\"publisher_account_id\"]", null, false, "Publisher Account");
+
+        private String locator;
+        private String spinner;
+        private boolean pageLoad;
+        private String description;
+
+        private DropDownMenu(String locator, String spinner, boolean pageLoad, String description) {
+            this.locator = locator;
+            this.spinner = spinner;
+            this.pageLoad = pageLoad;
+            this.description = description;
+        }
+
+        public String getLocator() {
+            return this.locator;
+        }
+
+        public String getSpinner() {
+            return this.spinner;
+        }
+
+        public boolean getPageLoad() {
+            return this.pageLoad;
+        }
+
+        @Override
+        public String toString() {
+            return this.description;
+        }
+
+    }
+    
+    public BulkAddEditCampaignsPage select (WebDriver driver, DropDownMenu menu, String option){
+
+        String query = "$('" + menu.getLocator() + "').find('option:contains(\"" + option + "\")').attr('selected',true).change();";
+        waitForDropDownElementToBePopulated(driver, menu.getLocator());
+
+        if (isElementPresent(driver, menu.getLocator())) {
+            changeElementBackground(driver, menu.getLocator());
+            ((JavascriptExecutor) driver).executeScript(query);
+            waitForAjaxRequestDone(driver, AJAX_TIMEOUT);
+            removeElementBackground(driver, menu.getLocator());
+            log.info("Select \"" + option + "\" option in \"" + menu.toString() + "\" Drop Down Menu in \"" + this.getClass().getSimpleName() + "\"");
+        }
+
+        return instance;
+    }
+    
+    /**
+     * Text Input Element as list of all text inputs on page
+     *
+     * @param locator     as jQuery mapping for text input element
+     * @param description as description for Text Input element
+     * @author mmadhusoodan
+     * @version 2.00
+     */
+    public static enum TextArea {
+
+        Campaigns("#upload_text_area", "Campaigns");
+
+        private String locator;
+        private String description;
+
+        private TextArea(String locator, String description) {
+            this.locator = locator;
+            this.description = description;
+        }
+
+        public String getLocator() {
+            return this.locator;
+        }
+
+        @Override
+        public String toString() {
+            return this.description;
+        }
+
+    }
+    
+    public BulkAddEditCampaignsPage type(WebDriver driver, TextArea input, String text) throws Exception {
+    
+        String query = "$('" + input.getLocator() + "').val('" + text + "');";
+        if (isElementPresent(driver, input.getLocator())) {
+            changeElementBackground(driver, input.getLocator());
+            String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
+            wait(100);
+            removeElementBackground(driver, input.getLocator());
+            log.info("Type \"" + text + "\" in \"" + input.toString() + "\" Text Input in \"" + this.getClass().getSimpleName() + "\"");
+        }
+        return instance;
+    }
+
+    /**
+     * Button Element as list of all buttons on page
+     *
+     * @param locator     as jQuery mapping for Button element locator
+     * @param spinner     as jQuery mapping for spinner
+     * @param pageLoad    as jQuery mapping for pageLoad
+     * @param description as description for Button element
+     * @author mmadhusoodan
+     * @version 2.00
+     */
+    public static enum Button {
+
+        Process("[name=\"process\"]", "#spin_span", true, "Process"),
+        ProcessError("[name=\"process\"]", "#spin_span", true, "Process"),
+        Cancel("[name=\"cancel\"]", null, false, "Cancel");
+
+        private String locator;
+        private String spinner;
+        private boolean pageLoad;
+        private String description;
+
+        private Button(String locator, String spinner, boolean pageLoad, String description) {
+            this.locator = locator;
+            this.spinner = spinner;
+            this.pageLoad = pageLoad;
+            this.description = description;
+
+        }
+
+        public String getLocator() {
+            return this.locator;
+        }
+
+        public String getSpinner() {
+            return this.spinner;
+        }
+
+        public boolean getPageLoad() {
+            return this.pageLoad;
+        }
+
+        @Override
+        public String toString() {
+            return this.description;
+        }
+
 
 }
+    
+    public BulkAddEditCampaignsPage click(WebDriver driver, Button button) {
+
+        String query = "$('" + button.getLocator() + "').click();";
+        if (isElementPresent(driver, button.getLocator()) == true) {
+            changeElementBackground(driver, button.getLocator());
+            String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
+            wait(100);
+            removeElementBackground(driver, button.getLocator());
+            log.info("Click " + button.toString() + " button in " + this.getClass().getSimpleName() + "\"");
+        }
+        
+        waitForElementToDissappear(driver, PROGRESS_GRID_CONTAINER);
+        
+        if(button.getPageLoad()){
+            //driver..waitForPageToLoad(LONG_PAGE_TIMEOUT);
+        }       
+
+        waitForElementToBeAppear(driver, ACTION_SUCCESS);
+        waitForElementToBeAppear(driver, POST_CHANGE_ID);
+        return instance;
+    }
+
+
+
+
+}
+
+
