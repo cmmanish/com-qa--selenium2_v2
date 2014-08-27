@@ -1,5 +1,8 @@
 package com.marin.qa.selenium.common;
 
+import java.util.Arrays;
+import java.util.Random;
+
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -10,7 +13,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * 
  */
 public class QaRandom {
-
+    Random randomGenerator = new Random();
     private static QaRandom instance;
 
     /**
@@ -66,7 +69,7 @@ public class QaRandom {
      * @param length
      * @return random string
      */
-    public String getRandomString(String prefix, int length) {
+    public String getRandomStringWithPrefix(String prefix, int length) {
 
         return prefix +"_"+ RandomStringUtils.randomAlphanumeric(length);
     }
@@ -80,6 +83,18 @@ public class QaRandom {
     public String getRandomString(int length) {
 
         return RandomStringUtils.randomAlphanumeric(length);
+    }
+
+
+    /**
+     * Generates a random alphanumeric string.
+     *
+     * @param length
+     * @return random string
+     */
+    public String getRandomInteger(int length) {
+
+        return RandomStringUtils.randomNumeric(length);
     }
 
     /**
@@ -111,4 +126,64 @@ public class QaRandom {
 
         return sb.toString();
     }
+    
+    /**<p> This method set to return random array of unique elements with exception
+     *<p> @param array original
+     *<p> @param arrayCount max length of array 
+     *<p> @return String[]
+     *<p> @author mmadhusoodan 
+     **/
+    public String[] getRandomArrayWithException(String[] array, int arrayCount, String ... exception){
+        
+        String[] newArray = new String[arrayCount];
+        if(array.length == arrayCount)
+            return array;
+        for (int index = 0; index < arrayCount; index++) {
+
+            String selectedElement = array[randomGenerator.nextInt(array.length - 1)];
+
+            while (Arrays.asList(newArray).contains(selectedElement) == true || Arrays.asList(exception).contains(selectedElement) == true) 
+                selectedElement = array[randomGenerator.nextInt(array.length - 1)];
+            
+            newArray[index] = selectedElement;
+        }
+        return newArray;
+    }
+    
+    /**<p> This method set to return random array of unique elements with exception
+     *<p> @param array original
+     *<p> @param arrayCount max length of array 
+     *<p> @return String[]
+     *<p> @author mmadhusoodan 
+     **/
+    public String getRandomElementWithException(String[] array, int arrayCount, String ... exception){
+        
+        String[] newArray = new String[arrayCount];
+        if(array.length == arrayCount)
+            return array[arrayCount];
+        for (int index = 0; index < arrayCount; index++) {
+
+            String selectedElement = array[randomGenerator.nextInt(array.length - 1)];
+
+            while (Arrays.asList(newArray).contains(selectedElement) == true || Arrays.asList(exception).contains(selectedElement) == true) 
+                selectedElement = array[randomGenerator.nextInt(array.length - 1)];
+            
+            newArray[index] = selectedElement;
+        }
+        return getRandomElement(newArray);
+    }
+    
+    /**
+     * <p> This method set to return random array of unique elements
+     * <p> @param array original
+     * <p> @param arrayCount max length of array
+     * <p> @return String[]
+     * <p> @author mmadhusoodan
+     **/
+    public String getRandomElement(String[] array) {
+
+        return array[randomGenerator.nextInt(array.length - 1)];
+
+    }
+            
 }

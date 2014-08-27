@@ -8,6 +8,7 @@ import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignPri
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignStatus;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignType;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CountryOfSale;
+
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -54,12 +55,12 @@ public class SingleCampaignsTest extends WebdriverBaseClass {
     @Test
     public void T1SingleCreateGoogleShoppingCampaignNonUS() throws Exception {
 
-        String campaignName = random.getRandomString("CampaignName", 5);
+        String campaignName = random.getRandomStringWithPrefix("CampaignName", 5);
 
         String merchantId = "100543509";
         String budget = "1.11";
         String successLabel = "Campaign successfully created. See Activity Log for details.";
-
+        String campaignPriority = random.getRandomElement(CampaignPriority);
         calendar.setTime(Calendar.getInstance().getTime());
         final String startDate = groupFormaterDate.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
@@ -85,7 +86,7 @@ public class SingleCampaignsTest extends WebdriverBaseClass {
         newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.CampaignType, CampaignType.SHOPPING.toString());
 
         newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.CountryOfSale, CountryOfSale.India.toString());
-        newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.CampaignPriority, CampaignPriority.High.toString());
+        newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.CampaignPriority, campaignPriority);
 
         newGoogleCampaignsPage.type(driver, NewGoogleCampaignPage.TextInput.MerchantId, merchantId);
         newGoogleCampaignsPage.type(driver, NewGoogleCampaignPage.TextInput.Budget, budget);

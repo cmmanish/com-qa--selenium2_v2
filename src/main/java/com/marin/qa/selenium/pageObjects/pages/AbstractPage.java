@@ -14,21 +14,17 @@ public abstract class AbstractPage {
 
     public static Logger log = Logger.getLogger(AbstractPage.class);
     public static final long LONG_PAGE_TIMEOUT = 121000;
+    public static final long TWO_SECONDS = 2000;
+    public static final long FIVE_SECONDS = 5000;
     public static final String ELEMENT_TIMEOUT = "65000";
     public static final String AJAX_TIMEOUT = "40000";
     public static final String JQUERY_TIMEOUT = "6000";
-    public static final String SPINNER_TIMEOUT = "110000";
-    public static final String TASK_ID = "#tasksText";
     public static final String POST_NOW_ID = "#postNowText";
     public static final String POST_CHANGE_ID = "#postChangeText";
-    public static final String ACCOUNT_SUCCESS = ".good a:contains(\"Account information successfully updated.\")";
+
     public static final String ACTION_SUCCESS = ".good a:contains(\"Activity Log\")";
-    public static final String ACTION_QUEUED = ".good li:contains(\"Action has been queued up to be posted to publishers\")";
-    public static final String BUBBLE_CONTAINER = "#bubble_container";
-    public static final String PROGRESS_GRID_CONTAINER = "#progress_grid_container";
-    public static final String SAVE_VIEW_CONTAINER_ID = "#addRemoveView_container_contents";
-    public static final String PROCESSING_GRID_CONTRAINER = "#progress_grid_container";
-    
+
+
     synchronized public static void wait(int n) {
 
         try {
@@ -47,7 +43,7 @@ public abstract class AbstractPage {
      * This method waits for an Jquery loaded
      * Requires current selenium object to work with.
      *
-     * @param selenium
+     * 
      *        The selenium instances currently in work.
      */
 
@@ -90,7 +86,7 @@ public abstract class AbstractPage {
      * This method waits for page to be loaded.
      * Requires current selenium object to work with.
      *
-     * @param selenium
+     * 
      *        The selenium instances currently in work.
      */
     public void waitForPageToLoad(final WebDriver driver, final long timeout) {
@@ -130,13 +126,13 @@ public abstract class AbstractPage {
      * 
      * Requires current selenium object to work with.
      *
-     * @param selenium
+     * 
      *        The selenium instances currently in work.
      * @param locator
      *        The Element locator.
      */
     public void waitForSpinnerToDissappear(WebDriver driver, String locator) {
-        String query = "return $('" + locator + "').length == 1;";
+        String query = "return $('" + locator + "').length == 0;";
         //wait for the spinner do dissappear i.e length == 0 
         try {
             boolean retval = (Boolean) ((JavascriptExecutor) driver).executeScript(query);
@@ -157,7 +153,7 @@ public abstract class AbstractPage {
      * 
      * Requires current selenium object to work with.
      *
-     * @param selenium
+     * 
      *        The selenium instances currently in work.
      * @param locator
      *        The Element locator.
@@ -201,7 +197,7 @@ public abstract class AbstractPage {
     /**
      * Verifies that the element is somewhere on the page.
      * 
-     * @param selenium
+     * 
      * @param locator
      * @return true if the element is present, false otherwise
      */
@@ -228,7 +224,7 @@ public abstract class AbstractPage {
      * This Method set to change element background
      * 
      * @author mmadhusoodan
-     * @param selenium
+     * 
      * @param locator
      * @return void
      * 
@@ -252,7 +248,7 @@ public abstract class AbstractPage {
      * This Method set to remove element background by id
      * 
      * @author mmadhusoodan
-     * @param selenium
+     * 
      * @param locator
      * @return void
      * 
@@ -267,6 +263,18 @@ public abstract class AbstractPage {
         }
         catch (Exception e) {
             log.error("Failed to change border of element on page");
+        }
+
+    }
+    
+    public void sleep(long time) {
+
+        try {
+            Thread.sleep(time);
+        }
+        catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
     }

@@ -24,7 +24,11 @@ public abstract class WebdriverBaseClass {
     protected static final Character slash_n = '\n';
     protected static final String SEMICOLON_SPACE = "; ";
     protected static final String COMMA_SPACE = ", ";
-
+    
+    protected static final String[] CampaignPriority = {"Low", "Medium", "High"};
+    
+    protected static final String[] Countries = {"Brazil", "India", "Italy", "United States", "United Kingdom", "Canada"};
+    
     protected static String LOGIN = "auto_orca@marinsoftware.com";
     protected static String PASSWORD = "marin2007";
    

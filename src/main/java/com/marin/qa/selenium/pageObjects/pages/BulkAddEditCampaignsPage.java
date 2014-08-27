@@ -29,8 +29,7 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
     /**
      * Label Element as list of all labels on page
      *
-     * @param locator     as jQuery mapping for Label element
-     * @param description as description for Label element
+
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -70,10 +69,7 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
     /**
      * Link Element as list of all links on page
      *
-     * @param locator     as jQuery mapping for Tabs element locator
-     * @param spinner     as jQuery mapping for spinner
-     * @param pageLoad    as jQuery mapping for pageLoad
-     * @param description as description for Link element
+
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -121,11 +117,7 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
     /**
      * Radio Element as list of all radio buttons on page
      *
-     * @param locator     as jQuery mapping for Radio Button element locator
-     * @param value       as jQuery mapping for radio button value
-     * @param spinner     as jQuery mapping for spinner
-     * @param pageLoad    as jQuery mapping for pageLoad
-     * @param description as description for Radio button element
+
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -174,10 +166,7 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
     /**
      * DropDownMenu Element as list of drop down menus on page
      *
-     * @param locator     as jQuery mapping for DropDown Menu element locator
-     * @param spinner     as jQuery mapping for spinner
-     * @param pageLoad    as jQuery mapping for pageLoad
-     * @param description as description for DropDownMenu element
+
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -235,8 +224,7 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
     /**
      * Text Input Element as list of all text inputs on page
      *
-     * @param locator     as jQuery mapping for text input element
-     * @param description as description for Text Input element
+
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -279,10 +267,7 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
     /**
      * Button Element as list of all buttons on page
      *
-     * @param locator     as jQuery mapping for Button element locator
-     * @param spinner     as jQuery mapping for spinner
-     * @param pageLoad    as jQuery mapping for pageLoad
-     * @param description as description for Button element
+
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -328,7 +313,7 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
     public BulkAddEditCampaignsPage click(WebDriver driver, Button button) {
 
         String query = "$('" + button.getLocator() + "').click();";
-        if (isElementPresent(driver, button.getLocator()) == true) {
+        if (isElementPresent(driver, button.getLocator())) {
             changeElementBackground(driver, button.getLocator());
             String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
             wait(100);
@@ -342,14 +327,10 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
             //driver..waitForPageToLoad(LONG_PAGE_TIMEOUT);
         }       
 
-        waitForElementToBeAppear(driver, ACTION_SUCCESS);
-        waitForElementToBeAppear(driver, POST_CHANGE_ID);
+       // waitForElementToBeAppear(driver, ACTION_SUCCESS);
+        waitForElementToBeAppear(driver, ActivityLogPage.Button.PostChange.toString());
         return instance;
     }
-
-
-
-
 }
 
 

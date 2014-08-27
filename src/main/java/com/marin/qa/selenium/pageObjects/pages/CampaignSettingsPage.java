@@ -1,5 +1,8 @@
 package com.marin.qa.selenium.pageObjects.pages;
 
+import java.util.Arrays;
+import java.util.Random;
+
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -42,7 +45,9 @@ public class CampaignSettingsPage extends AbstractPage {
      */
     public static enum Label {
 
-        SaveError("#bad", "Success");
+        SaveError("#bad", "Success"),
+        MerchantId(".spId0:contains(\"Merchant ID\") ~ .spId1", "Merchant Id"),
+        CountryOfSale(".spId0:contains(\"Country of Sale\") ~ .spId1", "Country of Sale");
         
         private String locator;
           private String description;
@@ -69,7 +74,7 @@ public class CampaignSettingsPage extends AbstractPage {
     
     public String getInfo(WebDriver driver, Label label) {
 
-        String query = "$('" + label.getLocator() + "').text().trim();";
+        String query = "return $('" + label.getLocator() + "').text().trim();";
         //Get Label text
         String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
         return retval;
@@ -223,11 +228,11 @@ public class CampaignSettingsPage extends AbstractPage {
 
     public static enum DropDownMenu {
     
-        PublisherAccount("#jsAddPublisherClientAcct", null, false, "Publisher\\Account"),
-        Status("[name=\"status\"]", null, false, "Publisher\\Account"),
-        CountryOfSale("#countryOfSaleSelection", null, false, "Publisher\\Account"),
-        CampaignType("#campaignType", null, false, "Publisher\\Account"),
-        CampaignPriority("#jsAddPublisherClientAcct", null, false, "Publisher\\Account");
+        PublisherAccount("#jsAddPublisherClientAcct", null, false, "Publisher Account"),
+        Status("[name=\"status\"]", null, false, "Status"),
+        CountryOfSale("#countryOfSaleSelection", null, false, "Country Of Sale"),
+        CampaignType("#campaignType", null, false, "Campaign Type"),
+        CampaignPriority("#campaignPriority", null, false, "Campaign Priority");
     
         private String locator;
         private String spinner;
@@ -292,7 +297,7 @@ public class CampaignSettingsPage extends AbstractPage {
         String query = "return $('" + menu.getLocator() + " option:selected').text();";
         waitForDropDownElementToBePopulated(driver, menu.getLocator());
 
-        //Get DropDownMenu text
+        //Get DropDownMenu Text
         if(isElementPresent(driver, menu.getLocator())){
             changeElementBackground(driver, menu.getLocator());
             info = (String) ((JavascriptExecutor) driver).executeScript(query);
@@ -334,7 +339,7 @@ public class CampaignSettingsPage extends AbstractPage {
 
     public CampaignSettingsPage type(WebDriver driver, TextInput input, String text) {
 
-        String query = "$('" + input.getLocator() + "').val('" + text + "').trigger('keyup');";
+        String query = "return $('" + input.getLocator() + "').val('" + text + "').trigger('keyup');";
         if (isElementPresent(driver, input.getLocator()) == true) {
             changeElementBackground(driver, input.getLocator());
             String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
@@ -394,7 +399,7 @@ public class CampaignSettingsPage extends AbstractPage {
     
     public CampaignSettingsPage check(WebDriver driver, Radio radio) {
 
-        String query = "$('" + radio.getLocator() + "').click();";
+        String query = "return $('" + radio.getLocator() + "').click();";
         if (isElementPresent(driver, radio.getLocator()) == true) {
             changeElementBackground(driver, radio.getLocator());
             String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
@@ -464,5 +469,4 @@ public class CampaignSettingsPage extends AbstractPage {
         
     }
     
-
 }
