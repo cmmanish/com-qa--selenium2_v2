@@ -17,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 
 public class SingleCreateCampaignsTest extends WebdriverBaseClass {
@@ -103,6 +104,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy",cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -195,6 +197,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
         log.info("cartop is " + cartop);
+        assertNotNull("Can't find the cartop. Something is fishy",cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
 
@@ -293,6 +296,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy",cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -393,6 +397,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy",cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -490,6 +495,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy",cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -589,6 +595,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy",cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -686,6 +693,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy",cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -732,7 +740,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         log.info("Start: T8SingleCreateGoogleDisplayNetworkOnlyCampaign()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT8", 5);
 
-        String budget = "1.11";
+        String dailyBudget = "1." + random.getRandomInteger(2);
         String successLabel = "Campaign successfully created. See Activity Log for details.";
         calendar.setTime(Calendar.getInstance().getTime());
         final String startDate = groupFormaterDate.format(calendar.getTime());
@@ -759,7 +767,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.Status, CampaignStatus.ACTIVE.toString());
         newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.CampaignType, CampaignType.DISPLAYNETWORKONLY.toString());
 
-        newGoogleCampaignsPage.type(driver, NewGoogleCampaignPage.TextInput.Budget, budget);
+        newGoogleCampaignsPage.type(driver, NewGoogleCampaignPage.TextInput.Budget, dailyBudget);
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
@@ -778,6 +786,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy",cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -806,7 +815,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Start Date in the Settings Page don't match ", startDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.StateDate));
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
 
-        assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
+        assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
         homePage.click(driver, HomePage.Link.Admin);
 

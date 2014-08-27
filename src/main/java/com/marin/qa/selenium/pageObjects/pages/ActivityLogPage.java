@@ -132,8 +132,7 @@ public class ActivityLogPage extends AbstractPage {
             log.info("Select \"" + option + "\" option in \"" + menu.toString() + "\" Drop Down Menu in \"" + this.getClass().getSimpleName() + "\"");
 
             if (menu.getSpinner() != null) {
-                waitForElementToDissappear(driver, menu.getSpinner());
-                //waitForSpinnerToDissappear(driver, menu.getSpinner());
+                waitForSpinnerToDissappear(driver, menu.getSpinner());
             }
 
             if (menu.getPageLoad()) {

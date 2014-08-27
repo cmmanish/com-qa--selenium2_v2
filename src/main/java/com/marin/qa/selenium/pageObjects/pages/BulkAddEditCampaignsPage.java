@@ -215,9 +215,10 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
             ((JavascriptExecutor) driver).executeScript(query);
             waitForAjaxRequestDone(driver, AJAX_TIMEOUT);
             removeElementBackground(driver, menu.getLocator());
+            waitForPageToLoad(driver,LONG_PAGE_TIMEOUT);
             log.info("Select \"" + option + "\" option in \"" + menu.toString() + "\" Drop Down Menu in \"" + this.getClass().getSimpleName() + "\"");
         }
-
+        wait(500);
         return instance;
     }
     
@@ -321,10 +322,10 @@ public class BulkAddEditCampaignsPage extends AbstractPage {
             log.info("Click " + button.toString() + " button in " + this.getClass().getSimpleName() + "\"");
         }
         
-        waitForElementToDissappear(driver, PROGRESS_GRID_CONTAINER);
+        waitForSpinnerToDissappear(driver, PROGRESS_GRID_CONTAINER);
         
         if(button.getPageLoad()){
-            //driver..waitForPageToLoad(LONG_PAGE_TIMEOUT);
+            waitForPageToLoad(driver,LONG_PAGE_TIMEOUT);
         }       
 
        // waitForElementToBeAppear(driver, ACTION_SUCCESS);
