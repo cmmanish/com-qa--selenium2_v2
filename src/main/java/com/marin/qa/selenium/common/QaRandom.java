@@ -165,7 +165,7 @@ public class QaRandom {
 
             String selectedElement = array[randomGenerator.nextInt(array.length - 1)];
 
-            while (Arrays.asList(newArray).contains(selectedElement) == true || Arrays.asList(exception).contains(selectedElement) == true) 
+            while (Arrays.asList(newArray).contains(selectedElement)  || Arrays.asList(exception).contains(selectedElement))
                 selectedElement = array[randomGenerator.nextInt(array.length - 1)];
             
             newArray[index] = selectedElement;

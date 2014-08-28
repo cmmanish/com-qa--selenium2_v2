@@ -198,7 +198,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign Shopping Channel Online in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
         assertEquals("Campaign Shopping Channel Local in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
-
+        homePage.click(driver, HomePage.Link.Admin);
     }
 
     /*
@@ -264,16 +264,18 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
 
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
+        homePage.click(driver, HomePage.Link.Admin);
 
     }
     /*
 
      */
     @Test
-    public void T3BulkEditPriorityGoogleShoppingCampaignUS() throws Exception {
+    public void T4BulkEditPriorityGoogleShoppingCampaignUS() throws Exception {
 
         String campaignName = "auto_ShoppingCampaign_Priority";
 
+        log.info("Get the current Priority ahead of time");
         HomePage homePage = HomePage.getInstance();
         CampaignsPage campaignsPage = CampaignsPage.getInstance();
         SingleCampaignPage singleCampaignPage = SingleCampaignPage.getInstance();
@@ -294,12 +296,13 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String status = CampaignStatus.ACTIVE.toString();
         String merchantId = "100543509";
         String countryOfSale = "United States";
-        String bulkCreateCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";
+        String bulkEditCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";
         final String startDate = "8/22/14";
         final String endDate = "12/31/14";
 
         String headers = "Account\tCampaign\tCampaign Priority\\n";
         String contents = account + TAB + campaignName + TAB + campaignPriority + END_OF_LINE;
+
         homePage.click(driver, HomePage.Link.Admin);
         activityLogPage.click(driver, ActivityLogPage.Link.Campaigns);
         BulkAddEditCampaignsPage bulkAddEditCampaignsPage = BulkAddEditCampaignsPage.getInstance();
@@ -314,10 +317,10 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
             postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
         }
 
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
+        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign );
         if (cartop.equalsIgnoreCase("")) {
             homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
+            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign );
         }
         log.info("cartop is " + cartop);
         assertNotNull("Can't find the cartop. Something is fishy",cartop);
@@ -345,14 +348,15 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Status in the Settings Page don't match ", status, campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.Status));
         assertEquals("Campaign Start Date in the Settings Page don't match ", startDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.StateDate));
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
-        assertEquals("Campaign budget in the Settings Page don't match ", merchantId, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.MerchantId));
+        assertEquals("Campaign Budget in the Settings Page don't match ", merchantId, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.MerchantId));
         assertEquals("Campaign CountryOfSale in the Settings Page don't match ", countryOfSale, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.CountryOfSale));
         assertEquals("Campaign Priority in the Settings Page don't match ", campaignPriority, campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority));
 
+        homePage.click(driver, HomePage.Link.Admin);
     }
 
     @Test
-    public void T4BulkEditDailyBudgetGoogleShoppingCampaignUS() throws Exception {
+    public void T5BulkEditDailyBudgetGoogleShoppingCampaignUS() throws Exception {
 
         String account = GOOGLE_ACCOUNT;
         String campaignName = "auto_ShoppingCampaign_Priority";
@@ -423,10 +427,12 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Priority in the Settings Page don't match ", campaignPriority, campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority));
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
+        homePage.click(driver, HomePage.Link.Admin);
+
     }
 
     @Test
-    public void T5BulkEditShoppingChannelGoogleShoppingCampaignUS() throws Exception {
+    public void T6BulkEditShoppingChannelGoogleShoppingCampaignUS() throws Exception {
 
         String account = GOOGLE_ACCOUNT;
         String campaignName = "auto_ShoppingCampaign_Priority";
@@ -500,6 +506,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
+        homePage.click(driver, HomePage.Link.Admin);
     }
 
     public void testLogout() {

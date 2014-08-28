@@ -4,12 +4,10 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-
 public class ActivityLogPage extends AbstractPage {
 
     public static Logger log = Logger.getLogger(ActivityLogPage.class);
     private static ActivityLogPage instance;
-    
 
     /**
      * Private constructor prevents construction outside this class.
@@ -29,15 +27,12 @@ public class ActivityLogPage extends AbstractPage {
     /**
      * Label Element as list of all labels on bubble
      *
-     * @version 2.00
-
      * @author mmadhusoodan
+     * @version 2.00
      */
     public static enum Label {
 
-        PostCount("#postCount", "PostCount"),
-        ReportLabel(".good", "ReportLabel"),
-        NoDataAlert(".dataGridNotice", "No Data Alert");
+        PostCount("#postCount", "PostCount"), ReportLabel(".good", "ReportLabel"), NoDataAlert(".dataGridNotice", "No Data Alert");
 
         private String locator;
         private String description;
@@ -60,14 +55,12 @@ public class ActivityLogPage extends AbstractPage {
 
     /**
      * This method set to return Label text
-     *
-
      */
 
     public String getInfo(WebDriver driver, Label label) {
 
         String query = "return $('" + label.getLocator() + "').text().trim();";
-        //Get Label text
+        // Get Label text
         String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
         return retval;
     }
@@ -75,10 +68,10 @@ public class ActivityLogPage extends AbstractPage {
     /**
      * DropDownMenu Element as list of all drop down menus on page
      *
-     * @version 2.00
-
-     *        as description for DropDownMenu element
      * @author mmadhusoodan
+     * @version 2.00
+     *          <p/>
+     *          as description for DropDownMenu element
      */
     public static enum DropDownMenu {
 
@@ -118,9 +111,7 @@ public class ActivityLogPage extends AbstractPage {
     /**
      * This Method set to select option in drop down menu
      *
-
      * @return ActivityLogPage
-     *
      */
     public ActivityLogPage select(WebDriver driver, DropDownMenu menu, String option) {
 
@@ -136,7 +127,7 @@ public class ActivityLogPage extends AbstractPage {
             }
 
             if (menu.getPageLoad()) {
-                waitForPageToLoad(driver,LONG_PAGE_TIMEOUT);
+                waitForPageToLoad(driver, LONG_PAGE_TIMEOUT);
             }
         }
         wait(1500);
@@ -147,24 +138,19 @@ public class ActivityLogPage extends AbstractPage {
     /**
      * Link Element as list of all links on page
      *
-     * @version 2.00
-
-     *        as description for Link element
      * @author Michael Beider
+     * @version 2.00
+     *          <p/>
+     *          as description for Link element
      */
     public static enum Link {
 
-        Campaigns("#bulk_upload_links_container a:contains(\"Campaigns\")", null, true, "Campaigns"),
-        Groups("#bulk_upload_links_container a:contains(\"Groups\")", null, true, "Groups"),
-        Keywords("#bulk_upload_links_container a:contains(\"Keywords\")", null, true, "Keywords"),
-        NegativeKeywords("#bulk_upload_links_container a:contains(\"NegativeKeywords\")", null, true,"NegativeKeywords"),
-        Creatives("#bulk_upload_links_container a:contains(\"Creatives\")", null, true, "Creatives"),
-        Placements("#bulk_upload_links_container a:contains(\"Placements\")", null, true, "Placements"),
-        Sitelinks("#bulk_upload_links_container a:contains(\"Sitelinks\")", null, true, "Sitelinks"),
-        ProductGroups("#bulk_upload_links_container a:contains(\"Product Groups\")", null, true, "Product Groups"),
-        Folders("#bulk_upload_links_container a:contains(\"Folders\")", null, true, "Folders"),
-        Revenue("#bulk_upload_links_container a:contains(\"Revenue\")", null, true, "Revenue"),
-        CreateReport(".jsReportButton", null, true, "Revenue");
+        Campaigns("#bulk_upload_links_container a:contains(\"Campaigns\")", null, true, "Campaigns"), Groups("#bulk_upload_links_container a:contains(\"Groups\")", null, true, "Groups"), Keywords(
+                "#bulk_upload_links_container a:contains(\"Keywords\")", null, true, "Keywords"), NegativeKeywords("#bulk_upload_links_container a:contains(\"NegativeKeywords\")", null, true,
+                "NegativeKeywords"), Creatives("#bulk_upload_links_container a:contains(\"Creatives\")", null, true, "Creatives"), Placements(
+                "#bulk_upload_links_container a:contains(\"Placements\")", null, true, "Placements"), Sitelinks("#bulk_upload_links_container a:contains(\"Sitelinks\")", null, true, "Sitelinks"), ProductGroups(
+                "#bulk_upload_links_container a:contains(\"Product Groups\")", null, true, "Product Groups"), Folders("#bulk_upload_links_container a:contains(\"Folders\")", null, true, "Folders"), Revenue(
+                "#bulk_upload_links_container a:contains(\"Revenue\")", null, true, "Revenue"), CreateReport(".jsReportButton", null, true, "Revenue");
 
         private String locator;
         private String spinner;
@@ -200,11 +186,9 @@ public class ActivityLogPage extends AbstractPage {
     /**
      * This Method set to click on link on page
      *
-     * @author mmadhusoodan
-
      * @param link
      * @return void
-     *
+     * @author mmadhusoodan
      */
 
     public void click(WebDriver driver, Link link) {
@@ -227,20 +211,18 @@ public class ActivityLogPage extends AbstractPage {
     /**
      * Label Element as list of all labels on bubble
      *
-     * @version 2.00
-
-     *        as description for Label element
      * @author mmadhusoodan
+     * @version 2.00
+     *          <p/>
+     *          as description for Label element
      */
     public static enum Column {
 
-        CheckBox("#left_table input#id_gridCheckboxAll:checkbox", "#left_table tbody input[name=\"id[]\"]:checkbox", "CheckBox"),
-        ID("#left_table #th_id_display a.sort_link", "#left_table tbody td:nth-child(2)", "ID"),
-        Publisher("#right_table #th_publisher a.sort_link", "#right_table tbody td:nth-child(1)", "Publisher"),
-        Description("#right_table #th_description a.sort_link", "#right_table tbody td:nth-child(2)", "Description"),
-        CreationDate("#right_table #th_creation_date a.sort_link", "#right_table tbody td:nth-child(3)", "Creation Date"),
-        User("#right_table #th_user a.sort_link", "#right_table tbody td:nth-child(4)", "User"),
-        Status("#right_table #th_activity_log_status a.sort_link", "#right_table tbody td:nth-child(5)", "Status");
+        CheckBox("#left_table input#id_gridCheckboxAll:checkbox", "#left_table tbody input[name=\"id[]\"]:checkbox", "CheckBox"), ID("#left_table #th_id_display a.sort_link",
+                "#left_table tbody td:nth-child(2)", "ID"), Publisher("#right_table #th_publisher a.sort_link", "#right_table tbody td:nth-child(1)", "Publisher"), Description(
+                "#right_table #th_description a.sort_link", "#right_table tbody td:nth-child(2)", "Description"), CreationDate("#right_table #th_creation_date a.sort_link",
+                "#right_table tbody td:nth-child(3)", "Creation Date"), User("#right_table #th_user a.sort_link", "#right_table tbody td:nth-child(4)", "User"), Status(
+                "#right_table #th_activity_log_status a.sort_link", "#right_table tbody td:nth-child(5)", "Status");
 
         private String tableLocator = "#operation_table ";
         private String headerLocator;
@@ -252,7 +234,6 @@ public class ActivityLogPage extends AbstractPage {
             this.cellLocator = cellLocator;
             this.description = description;
         }
-
 
         public String getHeaderLocator() {
             return this.tableLocator + this.headerLocator;
@@ -267,13 +248,10 @@ public class ActivityLogPage extends AbstractPage {
             return this.description;
         }
 
-
     }
 
     /**
      * This Method set to return information from any column by row index
-
-     *
      */
     public String getInfo(WebDriver driver, Column column, int index) {
 
@@ -287,8 +265,6 @@ public class ActivityLogPage extends AbstractPage {
 
     /**
      * This Method set to return information from searched Column by any column information
-     *
-      *
      */
     public String getInfo(WebDriver driver, Column searchedColumn, Column givenColumn, String option) {
 
@@ -296,12 +272,12 @@ public class ActivityLogPage extends AbstractPage {
         int row;
         String info = "";
         String query = "return $('" + Column.ID.getCellLocator() + "').size();";
-        //waitForAjaxRequestDone(selenium, AJAX_TIMEOUT);
+        // waitForAjaxRequestDone(selenium, AJAX_TIMEOUT);
 
         // Row count based on "ID" column since it's always present on Activity Log Grid
         long retval = (Long) ((JavascriptExecutor) driver).executeScript(query);
 
-        //long l = Long.parseLong(retval);
+        // long l = Long.parseLong(retval);
         int rowNumber = (int) retval;
 
         // Main purpose of the loop to find index of row that contains Column information
@@ -318,7 +294,8 @@ public class ActivityLogPage extends AbstractPage {
             info = getInfo(driver, searchedColumn, row);
         }
         else {
-            log.info("Can't get information from \"" + searchedColumn + "\" Column with information \"" + option + "\" in \"" + givenColumn.toString() + "\" Column in \"" + this.getClass().getSimpleName()    + "\"");
+            log.info("Can't get information from \"" + searchedColumn + "\" Column with information \"" + option + "\" in \"" + givenColumn.toString() + "\" Column in \""
+                    + this.getClass().getSimpleName() + "\"");
         }
 
         return info;
@@ -327,9 +304,6 @@ public class ActivityLogPage extends AbstractPage {
 
     /**
      * This Method set to check CarpOp check box by information in any column
-     *
-
-     *
      */
     public boolean check(WebDriver driver, Column column, String option) {
 
@@ -343,7 +317,7 @@ public class ActivityLogPage extends AbstractPage {
         // Row count based on "ID" column since it's always present on Activity Log Grid
         long retval = (Long) ((JavascriptExecutor) driver).executeScript(query);
 
-        //long l = Long.parseLong(retval);
+        // long l = Long.parseLong(retval);
         rowNumber = (int) retval;
         // Main purpose of the loop to find index of row that contains Column information
         for (row = 0; row < rowNumber; row++) {
@@ -368,9 +342,7 @@ public class ActivityLogPage extends AbstractPage {
     }
 
     /**
-     *  This Method set to check row check box by row index
-
-     *
+     * This Method set to check row check box by row index
      */
     public void check(WebDriver driver, int index) {
 
@@ -384,16 +356,12 @@ public class ActivityLogPage extends AbstractPage {
      * Button Element as list of all buttons on page
      *
      * @version 2.00
-
      */
     public static enum Button {
 
-        PostNow("#setup_action_sendcartop", "#grid_overlay_operation_table, #progress_grid_container", false, "Post Now"),
-        Hold("#setup_action_pausecartop", null, false, "Hold"),
-        Cancel("#setup_action_cancel", null, false, "Cancel"),
-        PostChange("#postChangeText", null, false, "Change"),
-        Post("##postNowText", null, false, "Post"),
-        PostAllNow("#setup_action_postallnow", null, false, "Post All Now");
+        PostNow("#setup_action_sendcartop", "#grid_overlay_operation_table, #progress_grid_container", false, "Post Now"), Hold("#setup_action_pausecartop", null, false, "Hold"), Cancel(
+                "#setup_action_cancel", null, false, "Cancel"), PostChange("#postChangeText", null, false, "Change"), Post("##postNowText", null, false, "Post"), PostAllNow(
+                "#setup_action_postallnow", null, false, "Post All Now");
 
         private String locator;
         private String spinner;
@@ -433,8 +401,6 @@ public class ActivityLogPage extends AbstractPage {
 
     /**
      * This Method set to click on link on page
-
-     *
      */
 
     public void click(WebDriver driver, Button button) {
@@ -457,7 +423,7 @@ public class ActivityLogPage extends AbstractPage {
     public ActivityLogPage check(WebDriver driver, Column checkbox) {
 
         String query = "$('" + checkbox.getCellLocator() + "').trigger('click').change();";
-        if(isElementPresent(driver, checkbox.getCellLocator())){
+        if (isElementPresent(driver, checkbox.getCellLocator())) {
             ((JavascriptExecutor) driver).executeScript(query);
             waitForAjaxRequestDone(driver, AJAX_TIMEOUT);
             log.info("Click on \"" + checkbox.toString() + "\" CheckBox in \"" + this.getClass().getSimpleName() + "\"");
@@ -466,84 +432,35 @@ public class ActivityLogPage extends AbstractPage {
         return instance;
     }
 
-    public String waitForCartopStatus(WebDriver driver, String cartop){
+    public String waitForCartopStatus(WebDriver driver, String cartop) {
 
-        if (cartop == null)
+        boolean  found = false;
+        if (cartop == null) {
+            log.info("Cartop sent was Null = " + cartop);
             return null;
-
+        }
+        String status = "-1";
         ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
         AdminPage adminPage = AdminPage.getInstance();
-        String status = null;
-        for (int i = 0; i < 120; i++) {
-
+        while (!found) {
+            adminPage.select(driver, AdminPage.Tab.ActivityLog);
             status = activityLogPage.getInfo(driver, ActivityLogPage.Column.Status, ActivityLogPage.Column.ID, cartop);
-
             log.info("CartOp # " + cartop + " got \"" + status + "\" status in \"ActivityLogPage\"");
-
-            if ("Succeeded".equalsIgnoreCase(status)) {
-                break;
-            }
-            else if ("Failed".equalsIgnoreCase(status)) {
-                break;
-            }
-            else if ("Cancelled".equalsIgnoreCase(status)) {
-                break;
-            }
-            else if ("Error - To be resent".equalsIgnoreCase(status)) {
-                break;
-            }
-            else if ("Held".equalsIgnoreCase(status)) {
-                break;
-            }
-            else if ("Syncing".equalsIgnoreCase(status)) {
-                sleep(TWO_SECONDS);
-                adminPage.select(driver, AdminPage.Tab.ActivityLog);
-                status = null;
-                continue;
-            }
-            else if ("To be sent".equalsIgnoreCase(status)) {
-                adminPage.select(driver, AdminPage.Tab.ActivityLog);
-                status = null;
-                continue;
-            }
-            else if ("Sending Now".equalsIgnoreCase(status)) {
-                sleep(FIVE_SECONDS);
-                adminPage.select(driver, AdminPage.Tab.ActivityLog);
-                status = null;
-                continue;
-            }
-
-            else if ("Sending now: (100 %)".equalsIgnoreCase(status)) {
-                sleep(FIVE_SECONDS);
-                log.info("GOOD LUCK YOU CLIENT IS STRUCK");
-                adminPage.select(driver, AdminPage.Tab.ActivityLog);
-                status = null;
-                continue;
-            }
-            else if ("Queued".equalsIgnoreCase(status)) {
-                sleep(FIVE_SECONDS);
-                adminPage.select(driver, AdminPage.Tab.ActivityLog);
-                status = null;
-                continue;
-            }
-            else if ("Processing".equalsIgnoreCase(status)) {
-                sleep(FIVE_SECONDS);
-                adminPage.select(driver, AdminPage.Tab.ActivityLog);
-                status = null;
-                continue;
+            log.info(status);
+            if ("Succeeded".equalsIgnoreCase(status) || 
+                    "Failed".equalsIgnoreCase(status) || 
+                        "Cancelled".equalsIgnoreCase(status) || 
+                            "Error - To be resent".equalsIgnoreCase(status) ||
+                                "Held".equalsIgnoreCase(status)) {
+                                    found = true;
+                                  //  return status;
             }
             else {
-                log.info("GOOD LUCK YOU CLIENT IS going to get Stuck ");
-                sleep(FIVE_SECONDS);
-                adminPage.select(driver, AdminPage.Tab.ActivityLog);
-                status = null;
-                continue;
-
+                log.info("Going to sleep for 3 sec ");
+                sleep(THREE_SECONDS); found = false;
             }
-
         }
         return status;
-
 
     }
 }

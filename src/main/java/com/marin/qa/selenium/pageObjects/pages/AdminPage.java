@@ -32,7 +32,7 @@ public class AdminPage extends AbstractPage {
 	 */
 	public static enum Tab {
 		
-		ActivityLog("#setup_action_activitylog", "#grid_overlay_operation_table, #progress_grid_container", true, "Activity Log"),
+		ActivityLog("#setup_action_activitylog", "#grid_overlay_operation_table", true, "Activity Log"),
 		Revenue("#setup_action_revenue_diagnostics", null, true, "Revenue"),
 		Dimensions("#setup_action_dimensions", null, true, "Dimensions"),
 		CustomColumns("#setup_action_custom_columns", null, true, "Custom Columns"),

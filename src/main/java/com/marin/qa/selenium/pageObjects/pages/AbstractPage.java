@@ -15,7 +15,7 @@ public abstract class AbstractPage {
 
     public static Logger log = Logger.getLogger(AbstractPage.class);
     public static final long LONG_PAGE_TIMEOUT = 121000;
-    public static final long TWO_SECONDS = 2000;
+    public static final long THREE_SECONDS = 3000;
     public static final long FIVE_SECONDS = 5000;
     public static final String ELEMENT_TIMEOUT = "65000";
     public static final String AJAX_TIMEOUT = "40000";
