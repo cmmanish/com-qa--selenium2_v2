@@ -32,7 +32,9 @@ public class ActivityLogPage extends AbstractPage {
      */
     public static enum Label {
 
-        PostCount("#postCount", "PostCount"), ReportLabel(".good", "ReportLabel"), NoDataAlert(".dataGridNotice", "No Data Alert");
+        PostCount("#postCount", "PostCount"), 
+        ReportLabel(".good", "ReportLabel"), 
+        NoDataAlert(".dataGridNotice", "No Data Alert");
 
         private String locator;
         private String description;
@@ -313,7 +315,6 @@ public class ActivityLogPage extends AbstractPage {
         String query = "return $('" + Column.ID.getCellLocator() + "').size();";
         waitForAjaxRequestDone(driver, AJAX_TIMEOUT);
 
-        log.info(query);
         // Row count based on "ID" column since it's always present on Activity Log Grid
         long retval = (Long) ((JavascriptExecutor) driver).executeScript(query);
 
@@ -359,8 +360,13 @@ public class ActivityLogPage extends AbstractPage {
      */
     public static enum Button {
 
-        PostNow("#setup_action_sendcartop", "#grid_overlay_operation_table, #progress_grid_container", false, "Post Now"), Hold("#setup_action_pausecartop", null, false, "Hold"), Cancel(
-                "#setup_action_cancel", null, false, "Cancel"), PostChange("#postChangeText", null, false, "Change"), Post("##postNowText", null, false, "Post"), PostAllNow(
+        PostNow("#setup_action_sendcartop", "#grid_overlay_operation_table, #progress_grid_container", false, "Post Now"), 
+        Hold("#setup_action_pausecartop", null, false, "Hold"), 
+        Cancel(
+                "#setup_action_cancel", null, false, "Cancel"), 
+                PostChange("#postChangeText", null, false, "Change"), 
+                Post("##postNowText", null, false, "Post"), 
+                PostAllNow(
                 "#setup_action_postallnow", null, false, "Post All Now");
 
         private String locator;

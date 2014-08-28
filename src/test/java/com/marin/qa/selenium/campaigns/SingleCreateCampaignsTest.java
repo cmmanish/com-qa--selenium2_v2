@@ -27,6 +27,10 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
     public static WebDriver driver = MarinApp.getApp();
 
+    public SingleCreateCampaignsTest() {
+        log.info("Now Running SingleCreateCampaignsTest Suite");
+    }
+
     @BeforeClass
     public static void testSetUp() {
         log.info("<--------- Start Setup Test --------->");

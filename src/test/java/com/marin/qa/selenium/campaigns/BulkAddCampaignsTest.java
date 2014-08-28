@@ -29,6 +29,11 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
     public static Logger log = Logger.getLogger(BulkAddCampaignsTest.class);
     public static WebDriver driver = MarinApp.getApp();
     public QaRandom random = QaRandom.getInstance();
+    
+    public BulkAddCampaignsTest (){
+        log.info("Now Running BulkAddCampaignsTest Suite");  
+    }
+    
 
     @BeforeClass
     public static void testSetUp() {
@@ -291,7 +296,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         singleCampaignPage.select(driver, SingleCampaignPage.Tab.Settings);
         String oldCampaignPriority = campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority);
 
-        String campaignPriority = random.getRandomElementWithException(CampaignPriority, 2, oldCampaignPriority);
+        String campaignPriority = random.getRandomElementWithException(CampaignPriority,oldCampaignPriority);
         String account = GOOGLE_ACCOUNT;
         String status = CampaignStatus.ACTIVE.toString();
         String merchantId = "100543509";
@@ -356,25 +361,51 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
     }
 
     @Test
-    public void T5BulkEditDailyBudgetGoogleShoppingCampaignUS() throws Exception {
+    public void T5BulkEditShoppingChannelCampaignUS() throws Exception {
 
         String account = GOOGLE_ACCOUNT;
         String campaignName = "auto_ShoppingCampaign_Priority";
-        String status = CampaignStatus.ACTIVE.toString();
-        String dailyBudget = "1." + random.getRandomInteger(2);
-        String merchantId = "100543509";
-        String campaignPriority = random.getRandomElement(CampaignPriority);
-        String bulkCreateCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";
-        final String startDate = "8/22/14";
-        final String endDate = "12/31/14";
-
-        String headers = "Account\tCampaign\tDaily Budget\\n";
-        String contents = account + TAB + campaignName + TAB + dailyBudget + END_OF_LINE;
-
+        
+        log.info("Get the current Shoppping Channel ahead of time");
         HomePage homePage = HomePage.getInstance();
         CampaignsPage campaignsPage = CampaignsPage.getInstance();
-
+        SingleCampaignPage singleCampaignPage = SingleCampaignPage.getInstance();
+        CampaignSettingsPage campaignSettingsPage = CampaignSettingsPage.getInstance();
         ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
+
+        // get the Campaign Setting value ahead of time
+        homePage.select(driver, HomePage.Tab.Campaigns);
+        campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
+
+        // Open the Campaign via clicking the link and go to Settings tab
+        assertEquals("Campaign " + campaignName + " couldn't be opened ", true, campaignsPage.open(driver, campaignName));
+        singleCampaignPage.select(driver, SingleCampaignPage.Tab.Settings);
+        
+        //get the Shoppping Channel checkbox values
+        boolean local = campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local);
+        boolean online = campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online);
+        String campaignPriority = campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority);
+        String dailyBudget = campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget);
+        
+        String countryOfSale = "United States";
+        String status = CampaignStatus.ACTIVE.toString();
+        String merchantId = "100543509";
+        String bulkEditCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";
+        final String startDate = "8/22/14";
+        final String endDate = "12/31/14";
+        
+        String shoppingChannel = "";
+        if (local && online )  shoppingChannel = "local";
+        
+        if (local && !online )  shoppingChannel = "Online";
+        
+        if (!local && online )  shoppingChannel = "local";
+        
+
+        String headers = "Account\tCampaign\tShopping Channels\\n";
+        String contents = account + TAB + campaignName + TAB + shoppingChannel + END_OF_LINE;
+
+        homePage.click(driver, HomePage.Link.Admin);
         activityLogPage.click(driver, ActivityLogPage.Link.Campaigns);
         BulkAddEditCampaignsPage bulkAddEditCampaignsPage = BulkAddEditCampaignsPage.getInstance();
         bulkAddEditCampaignsPage.select(driver,BulkAddEditCampaignsPage.DropDownMenu.PublisherAccount,"Select");
@@ -388,10 +419,10 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
             postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
         }
 
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
+        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign);
         if (cartop.equalsIgnoreCase("")) {
             homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
+            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign);
         }
 
         assertNotNull("Can't find the cartop. Something is fishy",cartop);
@@ -414,25 +445,39 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign " + campaignName + " couldn't be opened ", true, campaignsPage.open(driver, campaignName));
 
-        SingleCampaignPage singleCampaignPage = SingleCampaignPage.getInstance();
         singleCampaignPage.select(driver, SingleCampaignPage.Tab.Settings);
 
-        CampaignSettingsPage campaignSettingsPage = CampaignSettingsPage.getInstance();
         assertEquals("Campaign Name in the Settings Page don't match ", campaignName, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.CampaignName));
         assertEquals("Campaign Status in the Settings Page don't match ", status, campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.Status));
         assertEquals("Campaign Start Date in the Settings Page don't match ", startDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.StateDate));
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
         assertEquals("Campaign Merchant ID in the Settings Page don't match ", merchantId, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.MerchantId));
-        // assertEquals("Campaign budget in the Settings Page don't match ", countryOfSale, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.CountryOfSale));
+        assertEquals("Campaign budget in the Settings Page don't match ", countryOfSale, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.CountryOfSale));
         assertEquals("Campaign Priority in the Settings Page don't match ", campaignPriority, campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority));
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
+        if (local && online )  {
+            assertEquals("Campaign budget in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
+            assertEquals("Campaign budget in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
+        }
+        
+        if (local && !online ) {
+            assertEquals("Campaign budget in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
+            assertEquals("Campaign budget in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
+        }
+        
+        if (!local && online )  {
+            assertEquals("Campaign budget in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
+            assertEquals("Campaign budget in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
+        }
+        
+        
         homePage.click(driver, HomePage.Link.Admin);
 
     }
 
     @Test
-    public void T6BulkEditShoppingChannelGoogleShoppingCampaignUS() throws Exception {
+    public void T6BulkEditBudgetGoogleShoppingCampaignUS() throws Exception {
 
         String account = GOOGLE_ACCOUNT;
         String campaignName = "auto_ShoppingCampaign_Priority";

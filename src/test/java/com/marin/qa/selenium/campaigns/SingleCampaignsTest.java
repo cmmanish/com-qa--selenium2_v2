@@ -32,7 +32,7 @@ public class SingleCampaignsTest extends WebdriverBaseClass {
 
     public SingleCampaignsTest(){
 
-        log.info("Now Running SingleCampaignsTest Suite");
+        log.info("Now Running SingleCampaignsTest Suite");  
     }
 
     @BeforeClass

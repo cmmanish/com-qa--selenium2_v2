@@ -1,11 +1,9 @@
 package com.marin.qa.selenium.pageObjects.pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -137,8 +135,8 @@ public abstract class AbstractPage {
      *        The Element locator.
      */
     public void waitForSpinnerToDissappear(WebDriver driver, String locator) {
-        String query = "return $('" + locator + "').length == 1;";
-        //wait for the spinner do dissappear i.e length == 1
+        String query = "return $('" + locator + "').is(':visible')";
+        //wait for the spinner do dissappear  is(':visible') false
         try {
             boolean retval = (Boolean) ((JavascriptExecutor) driver).executeScript(query);
             while (retval){
