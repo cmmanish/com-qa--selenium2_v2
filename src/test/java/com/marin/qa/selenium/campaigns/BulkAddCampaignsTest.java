@@ -13,6 +13,7 @@ import com.marin.qa.selenium.pageObjects.pages.SingleCampaignPage;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignStatus;
 
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -54,7 +55,12 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         log.info("<--------- End Logout Test --------->");
     }
 
-
+    @After
+    public void afterEachTest() {
+        log.info("Running afterEachTest()");
+        HomePage homePage = HomePage.getInstance();
+        homePage.click(driver, HomePage.Link.Admin);
+    }
 
     /*
      * Sample Bulk Sheet
@@ -67,7 +73,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String account = GOOGLE_ACCOUNT;
         String campaignName = random.getRandomStringWithPrefix("CampaignName", 5);
         String status = "Active";
-        String dailyBudget = "1.11";
+        String dailyBudget = "1." + random.getRandomInteger(2);
         String network = "Shopping";
         String merchantId = "100543509";
         String countryOfSale = "United States";
@@ -143,7 +149,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String account = GOOGLE_ACCOUNT;
         String campaignName = random.getRandomStringWithPrefix("CampaignName", 5);
         String status = "Active";
-        String dailyBudget = "1.11";
+        String dailyBudget = "1." + random.getRandomInteger(2);
         String network = "Shopping";
         String merchantId = "100543509";
         String countryOfSale = "United States";
@@ -217,7 +223,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String account = GOOGLE_ACCOUNT;
         String campaignName = random.getRandomStringWithPrefix("CampaignName", 5);
         String status = "Active";
-        String dailyBudget = "1.11";
+        String dailyBudget = "1." + random.getRandomInteger(2);
         String network = "display select";
         String bulkCreateCampaign = "Bulk Create: Google Campaign: " + campaignName + ".";
 
@@ -295,6 +301,9 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign " + campaignName + " couldn't be opened ", true, campaignsPage.open(driver, campaignName));
         singleCampaignPage.select(driver, SingleCampaignPage.Tab.Settings);
         String oldCampaignPriority = campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority);
+
+        //Variables needed for the tests
+        log.info("Variables needed for the tests ");
 
         String campaignPriority = random.getRandomElementWithException(CampaignPriority,oldCampaignPriority);
         String account = GOOGLE_ACCOUNT;
@@ -482,7 +491,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String account = GOOGLE_ACCOUNT;
         String campaignName = "auto_ShoppingCampaign_Priority";
         String status = CampaignStatus.ACTIVE.toString();
-        String dailyBudget = "1.11";
+        String dailyBudget = "1." + random.getRandomInteger(2);
         String merchantId = "100543509";
         String shoppingChannels = "online";
         String campaignPriority = random.getRandomElement(CampaignPriority);
