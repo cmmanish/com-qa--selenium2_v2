@@ -4,11 +4,9 @@ import com.marin.qa.selenium.WebdriverBaseClass;
 import com.marin.qa.selenium.common.MarinApp;
 import com.marin.qa.selenium.common.QaRandom;
 import com.marin.qa.selenium.pageObjects.pages.*;
-import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignPriority;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignStatus;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignType;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CountryOfSale;
-
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -19,10 +17,6 @@ import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 
-
-
-
-
 public class SingleCampaignsTest extends WebdriverBaseClass {
 
     public static Logger log = Logger.getLogger(SingleCampaignsTest.class);
@@ -30,9 +24,9 @@ public class SingleCampaignsTest extends WebdriverBaseClass {
     public QaRandom random = QaRandom.getInstance();
 
 
-    public SingleCampaignsTest(){
+    public SingleCampaignsTest() {
 
-        log.info("Now Running SingleCampaignsTest Suite");  
+        log.info("Now Running SingleCampaignsTest Suite");
     }
 
     @BeforeClass

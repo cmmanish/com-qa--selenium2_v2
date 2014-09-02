@@ -24,7 +24,7 @@ public class CampaignsPage extends AbstractPage {
         return instance;
     }
 
-    public final static String CAMPAIGN_VIEW = "150CampaignsAllButDeleted";
+    public final static String CAMPAIGN_VIEW = "500CampaignsAllButDeleted";
 
     /**
      * Link Element as list of all links on page

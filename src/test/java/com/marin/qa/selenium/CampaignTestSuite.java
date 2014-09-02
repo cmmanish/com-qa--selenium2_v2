@@ -11,11 +11,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-        BuildAcceptanceTest.class,
         SingleCampaignsTest.class,
         SingleCreateCampaignsTest.class,
         BulkAddCampaignsTest.class
-
 })
 public class CampaignTestSuite {
 

@@ -49,8 +49,8 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
     }
 
     @After
-    public void afterEachTest() {
-        log.info("Running afterEachTest()");
+    public void RunAfterEachTest() {
+        log.info("Running RunAfterEachTest()");
         HomePage homePage = HomePage.getInstance();
         homePage.click(driver, HomePage.Link.Admin);
     }

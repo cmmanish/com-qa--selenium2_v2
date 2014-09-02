@@ -438,6 +438,19 @@ public class ActivityLogPage extends AbstractPage {
         return instance;
     }
 
+    public void waitForPostCount(WebDriver driver){
+
+        String postCount = getInfo(driver, ActivityLogPage.Label.PostCount);
+        int tryCount = 0;
+        while ("0".equalsIgnoreCase(postCount) || tryCount==5) {
+            wait(500);
+            AdminPage adminPage = AdminPage.getInstance();
+            adminPage.select(driver, AdminPage.Tab.ActivityLog);
+            postCount = getInfo(driver, ActivityLogPage.Label.PostCount);
+            tryCount++;
+        }
+    }
+
     public String waitForCartopStatus(WebDriver driver, String cartop) {
 
         boolean  found = false;

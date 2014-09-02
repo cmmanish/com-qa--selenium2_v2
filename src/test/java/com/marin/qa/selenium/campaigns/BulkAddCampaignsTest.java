@@ -56,10 +56,13 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
     }
 
     @After
-    public void afterEachTest() {
-        log.info("Running afterEachTest()");
+    public void RunAfterEachTest() {
+
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("Running RunAfterEachTest()");
         HomePage homePage = HomePage.getInstance();
         homePage.click(driver, HomePage.Link.Admin);
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     /*
@@ -70,6 +73,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
     @Test
     public void T1BulkCreateGoogleShoppingCampaignUSOnline() throws Exception {
 
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String account = GOOGLE_ACCOUNT;
         String campaignName = random.getRandomStringWithPrefix("CampaignName", 5);
         String status = "Active";
@@ -101,11 +105,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
         homePage.click(driver, HomePage.Link.Admin);
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
+        activityLogPage.waitForPostCount(driver);
 
         String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
         if (cartop.equalsIgnoreCase("")) {
@@ -141,11 +141,13 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
         homePage.click(driver, HomePage.Link.Admin);
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T2BulkCreateGoogleShoppingCampaignUSShoppingChannelBoth() throws Exception {
 
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String account = GOOGLE_ACCOUNT;
         String campaignName = random.getRandomStringWithPrefix("CampaignName", 5);
         String status = "Active";
@@ -179,6 +181,8 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
         homePage.click(driver, HomePage.Link.Admin);
+
+        activityLogPage.waitForPostCount(driver);
         String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
         if (cartop.equalsIgnoreCase("")) {
             homePage.click(driver, HomePage.Link.Admin);
@@ -210,6 +214,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Shopping Channel Online in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
         assertEquals("Campaign Shopping Channel Local in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
         homePage.click(driver, HomePage.Link.Admin);
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     /*
@@ -220,6 +225,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
     @Test
     public void T3BulkCreateGoogleDispalyCampaign() throws Exception {
 
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String account = GOOGLE_ACCOUNT;
         String campaignName = random.getRandomStringWithPrefix("CampaignName", 5);
         String status = "Active";
@@ -247,6 +253,9 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
         homePage.click(driver, HomePage.Link.Admin);
+
+        activityLogPage.waitForPostCount(driver);
+
         String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
         if (cartop.equalsIgnoreCase("")) {
             homePage.click(driver, HomePage.Link.Admin);
@@ -276,6 +285,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
         homePage.click(driver, HomePage.Link.Admin);
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 
     }
     /*
@@ -284,6 +294,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
     @Test
     public void T4BulkEditPriorityGoogleShoppingCampaignUS() throws Exception {
 
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String campaignName = "auto_ShoppingCampaign_Priority";
 
         log.info("Get the current Priority ahead of time");
@@ -325,11 +336,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
         homePage.click(driver, HomePage.Link.Admin);
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
+        activityLogPage.waitForPostCount(driver);
 
         String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign );
         if (cartop.equalsIgnoreCase("")) {
@@ -367,11 +374,13 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Priority in the Settings Page don't match ", campaignPriority, campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority));
 
         homePage.click(driver, HomePage.Link.Admin);
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T5BulkEditShoppingChannelCampaignUS() throws Exception {
 
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String account = GOOGLE_ACCOUNT;
         String campaignName = "auto_ShoppingCampaign_Priority";
         
@@ -409,6 +418,8 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         if (local && !online )  shoppingChannel = "Online";
         
         if (!local && online )  shoppingChannel = "local";
+
+        if (!local && !online )  shoppingChannel = "Online";
         
 
         String headers = "Account\tCampaign\tShopping Channels\\n";
@@ -422,11 +433,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
         homePage.click(driver, HomePage.Link.Admin);
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
+        activityLogPage.waitForPostCount(driver);
 
         String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign);
         if (cartop.equalsIgnoreCase("")) {
@@ -466,28 +473,33 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
         if (local && online )  {
-            assertEquals("Campaign budget in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
-            assertEquals("Campaign budget in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
         }
         
         if (local && !online ) {
-            assertEquals("Campaign budget in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
-            assertEquals("Campaign budget in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
         }
         
         if (!local && online )  {
-            assertEquals("Campaign budget in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
-            assertEquals("Campaign budget in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
+        }
+
+        if (!local && !online )  {
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
         }
         
-        
         homePage.click(driver, HomePage.Link.Admin);
-
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T6BulkEditBudgetGoogleShoppingCampaignUS() throws Exception {
 
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String account = GOOGLE_ACCOUNT;
         String campaignName = "auto_ShoppingCampaign_Priority";
         String status = CampaignStatus.ACTIVE.toString();
@@ -515,11 +527,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
         homePage.click(driver, HomePage.Link.Admin);
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
+        activityLogPage.waitForPostCount(driver);
 
         String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
         if (cartop.equalsIgnoreCase("")) {
@@ -561,6 +569,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
         homePage.click(driver, HomePage.Link.Admin);
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     public void testLogout() {
