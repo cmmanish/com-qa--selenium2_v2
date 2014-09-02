@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="af421c8a-0a88-4d97-81d5-0883c758b3a2" name="Default" comment="2nd Commit with a working Log4j">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java" afterPath="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BuildAcceptanceTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BuildAcceptanceTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/CampaignTestSuite.java" afterPath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/CampaignTestSuite.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java" afterPath="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/local.properties" afterPath="$PROJECT_DIR$/src/main/resources/local.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="f70a9135-ab25-4334-bbf5-8c110e7a15a5" name="Rejected commit: Default" comment="2nd Commit with a working Log4j" />
@@ -106,7 +100,7 @@
       <file leaf-file-name="BulkAddCampaignsTest.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="380" column="16" selection-start="22021" selection-end="22021" vertical-scroll-proportion="-1.10299" vertical-offset="6392" max-vertical-offset="9104">
+            <state line="155" column="40" selection-start="8089" selection-end="8089" vertical-scroll-proportion="0.7189189" vertical-offset="1862" max-vertical-offset="10811">
               <folding />
             </state>
           </provider>
@@ -115,7 +109,7 @@
       <file leaf-file-name="ActivityLogPage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="449" column="23" selection-start="15638" selection-end="15638" vertical-scroll-proportion="0.0" vertical-offset="6501" max-vertical-offset="7504">
+            <state line="447" column="8" selection-start="15486" selection-end="15486" vertical-scroll-proportion="0.0" vertical-offset="6492" max-vertical-offset="7504">
               <folding />
             </state>
           </provider>
@@ -179,8 +173,8 @@
         <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BuildAcceptanceTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java" />
         <option value="$PROJECT_DIR$/src/main/resources/local.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/CampaignTestSuite.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java" />
       </list>
     </option>
@@ -772,7 +766,7 @@
       <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13311511" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34639177" sideWeight="0.49917173" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34639177" sideWeight="0.49917173" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1079,20 +1073,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="449" column="23" selection-start="15638" selection-end="15638" vertical-scroll-proportion="0.0" vertical-offset="6501" max-vertical-offset="7504">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10-sources.jar!/org/junit/internal/runners/statements/RunAfters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="13" selection-start="670" selection-end="670" vertical-scroll-proportion="0.47454843" vertical-offset="47" max-vertical-offset="656">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="0" selection-start="405" selection-end="405" vertical-scroll-proportion="0.35220125" vertical-offset="0" max-vertical-offset="636">
@@ -1114,9 +1094,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10-sources.jar!/org/junit/internal/runners/statements/RunAfters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="0" selection-start="886" selection-end="886" vertical-scroll-proportion="0.7217391" vertical-offset="81" max-vertical-offset="656">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="447" column="8" selection-start="15486" selection-end="15486" vertical-scroll-proportion="0.0" vertical-offset="6492" max-vertical-offset="7504">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="380" column="16" selection-start="22021" selection-end="22021" vertical-scroll-proportion="-1.10299" vertical-offset="6392" max-vertical-offset="9104">
+        <state line="155" column="40" selection-start="8089" selection-end="8089" vertical-scroll-proportion="0.7189189" vertical-offset="1862" max-vertical-offset="10811">
           <folding />
         </state>
       </provider>

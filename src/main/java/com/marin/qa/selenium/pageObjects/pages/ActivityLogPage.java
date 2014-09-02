@@ -442,7 +442,7 @@ public class ActivityLogPage extends AbstractPage {
 
         String postCount = getInfo(driver, ActivityLogPage.Label.PostCount);
         int tryCount = 0;
-        while ("0".equalsIgnoreCase(postCount) || tryCount==5) {
+        while ("0".equalsIgnoreCase(postCount) && tryCount == 5) {
             wait(500);
             AdminPage adminPage = AdminPage.getInstance();
             adminPage.select(driver, AdminPage.Tab.ActivityLog);

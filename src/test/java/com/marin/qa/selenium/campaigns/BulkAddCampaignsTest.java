@@ -513,8 +513,8 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         final String startDate = "8/22/14";
         final String endDate = "12/31/14";
 
-        String headers = "Account\tCampaign\tShopping Channels\\n";
-        String contents = account + TAB + campaignName + TAB + shoppingChannels + END_OF_LINE;
+        String headers = "Account\tCampaign\tDaily Budget\\n";
+        String contents = account + TAB + campaignName + TAB + dailyBudget + END_OF_LINE;
 
         HomePage homePage = HomePage.getInstance();
         CampaignsPage campaignsPage = CampaignsPage.getInstance();
