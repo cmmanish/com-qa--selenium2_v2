@@ -25,8 +25,9 @@ public class SingleCampaignsTest extends WebdriverBaseClass {
 
 
     public SingleCampaignsTest() {
-
+        log.info("=====================================");
         log.info("Now Running SingleCampaignsTest Suite");
+        log.info("=====================================");
     }
 
     @BeforeClass
@@ -38,7 +39,7 @@ public class SingleCampaignsTest extends WebdriverBaseClass {
     }
 
     @AfterClass
-    public static void cleanup() {
+    public static void testCleanup() {
         log.info("<--------- Start Logout Test --------->");
         clearAllPendingChanges(driver);
         logoutSuccessful(driver);
@@ -115,16 +116,4 @@ public class SingleCampaignsTest extends WebdriverBaseClass {
         }
 
     }
-
-
-    public void testLogout() {
-        log.info("<--------- Start Logout Test --------->");
-        HomePage homePage = HomePage.getInstance();
-        clearAllPendingChanges(driver);
-        homePage.click(driver, HomePage.Link.Admin);
-        homePage.click(driver, HomePage.Link.Logout);
-        driver.close();
-        log.info("<--------- End Login Test --------->");
-    }
-
 }

@@ -45,7 +45,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
     }
 
     @AfterClass
-    public static void cleanup() {
+    public static void testCleanup() {
         log.info("<--------- Start Logout Test --------->");
         clearAllPendingChanges(driver);
         HomePage homePage = HomePage.getInstance();
@@ -572,14 +572,5 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
-    public void testLogout() {
-        log.info("<--------- Start Logout Test --------->");
-        HomePage homePage = HomePage.getInstance();
-        clearAllPendingChanges(driver);
-        homePage.click(driver, HomePage.Link.Admin);
-        homePage.click(driver, HomePage.Link.Logout);
-        driver.close();
-        log.info("<--------- End Login Test --------->");
-    }
 
 }

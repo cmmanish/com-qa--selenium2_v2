@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af421c8a-0a88-4d97-81d5-0883c758b3a2" name="Default" comment="2nd Commit with a working Log4j">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java" afterPath="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java" afterPath="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java" afterPath="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="f70a9135-ab25-4334-bbf5-8c110e7a15a5" name="Rejected commit: Default" comment="2nd Commit with a working Log4j" />
@@ -79,37 +81,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SingleCreateCampaignsTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java">
+      <file leaf-file-name="local.properties" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/local.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="146" column="8" selection-start="7452" selection-end="7513" vertical-scroll-proportion="0.0" vertical-offset="1632" max-vertical-offset="13264">
+            <state line="7" column="26" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="368">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CampaignTestSuite.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CampaignTestSuite.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/CampaignTestSuite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="13" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
+            <state line="13" column="13" selection-start="442" selection-end="442" vertical-scroll-proportion="0.18390805" vertical-offset="0" max-vertical-offset="609">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BulkAddCampaignsTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java">
+      <file leaf-file-name="SingleCampaignsTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="155" column="40" selection-start="8089" selection-end="8089" vertical-scroll-proportion="0.7189189" vertical-offset="1862" max-vertical-offset="10811">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActivityLogPage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="447" column="8" selection-start="15486" selection-end="15486" vertical-scroll-proportion="0.0" vertical-offset="6492" max-vertical-offset="7504">
+            <state line="19" column="13" selection-start="725" selection-end="725" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1760">
               <folding />
             </state>
           </provider>
@@ -118,16 +111,7 @@
       <file leaf-file-name="CampaignsPage.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="0" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5136">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="local.properties" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/local.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="18" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="368">
+            <state line="64" column="0" selection-start="1533" selection-end="1533" vertical-scroll-proportion="0.0" vertical-offset="725" max-vertical-offset="5104">
               <folding />
             </state>
           </provider>
@@ -168,14 +152,14 @@
         <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/AbstractPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/BulkAddEditCampaignsPage.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/common/QaRandom.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BuildAcceptanceTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java" />
         <option value="$PROJECT_DIR$/src/main/resources/local.properties" />
         <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/CampaignTestSuite.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java" />
       </list>
     </option>
   </component>
@@ -215,8 +199,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1920" />
-    <option name="y" value="-53" />
+    <option name="x" value="-1896" />
+    <option name="y" value="-86" />
     <option name="width" value="1883" />
     <option name="height" value="1092" />
   </component>
@@ -346,7 +330,7 @@
     <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Font" />
+    <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.Java" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
@@ -375,7 +359,7 @@
       <recent name="com.marin.qa.selenium" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BulkAddCampaignsTest">
+  <component name="RunManager" selected="JUnit.SingleCampaignsTest">
     <configuration default="false" name="BulkAddCampaignsTest.T4BulkEditPriorityGoogleShoppingCampaignUS" type="JUnit" factoryName="JUnit" editBeforeRun="true" temporary="true" nameIsGenerated="true">
       <module name="qa.common.selenium2" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -384,34 +368,6 @@
       <option name="MAIN_CLASS_NAME" value="com.marin.qa.selenium.campaigns.BulkAddCampaignsTest" />
       <option name="METHOD_NAME" value="T4BulkEditPriorityGoogleShoppingCampaignUS" />
       <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="true" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="SingleCreateCampaignsTest" type="JUnit" factoryName="JUnit" editBeforeRun="true" temporary="true" nameIsGenerated="true">
-      <module name="qa.common.selenium2" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" value="" />
-      <option name="PACKAGE_NAME" value="com.marin.qa.selenium.campaigns" />
-      <option name="MAIN_CLASS_NAME" value="com.marin.qa.selenium.campaigns.SingleCreateCampaignsTest" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
@@ -504,6 +460,28 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SingleCampaignsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="qa.common.selenium2" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="com.marin.qa.selenium.campaigns" />
+      <option name="MAIN_CLASS_NAME" value="com.marin.qa.selenium.campaigns.SingleCampaignsTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -673,18 +651,18 @@
       <item index="1" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest.T2BulkCreateGoogleShoppingCampaignUSShoppingChannelBoth" />
       <item index="3" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest.T4BulkEditPriorityGoogleShoppingCampaignUS" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest.T1SingleCreateGoogleShoppingCampaignNonUS" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest,T1SingleCreateGoogleShoppingCampaignNonUS and 1 more" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest.T5BulkEditShoppingChannelCampaignUS" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest.T1SingleCreateGoogleShoppingCampaignNonUS" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest,T1SingleCreateGoogleShoppingCampaignNonUS and 1 more" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest.T5BulkEditShoppingChannelCampaignUS" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.SingleCampaignsTest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest.T5BulkEditShoppingChannelCampaignUS" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest.T4BulkEditPriorityGoogleShoppingCampaignUS" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest,T1SingleCreateGoogleShoppingCampaignNonUS and 1 more" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest.T1SingleCreateGoogleShoppingCampaignNonUS" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SingleCampaignsTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest.T5BulkEditShoppingChannelCampaignUS" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.BulkAddCampaignsTest.T4BulkEditPriorityGoogleShoppingCampaignUS" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest,T1SingleCreateGoogleShoppingCampaignNonUS and 1 more" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.SingleCreateCampaignsTest.T1SingleCreateGoogleShoppingCampaignNonUS" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -694,8 +672,8 @@
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="StructureViewFactory">
-    <option name="AUTOSCROLL_MODE" value="false" />
-    <option name="ACTIVE_ACTIONS" value=",SHOW_FIELDS" />
+    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
+    <option name="ACTIVE_ACTIONS" value=",SHOW_NON_PUBLIC,SHOW_ANONYMOUS,SHOW_FIELDS" />
     <option name="SHOW_TOOLBAR" value="true" />
   </component>
   <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false" SSL_PROTOCOLS="sslv3">
@@ -745,7 +723,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1920" y="-53" width="1883" height="1092" extended-state="0" />
+    <frame x="-1896" y="-86" width="1883" height="1092" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -761,17 +739,17 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38207546" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17948718" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17890158" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15818584" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13311511" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34639177" sideWeight="0.49917173" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1326808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3459959" sideWeight="0.49917173" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37259102" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="left" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -784,8 +762,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16642755" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36022252" sideWeight="0.49917173" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32894737" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -952,9 +930,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1410" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignSettingsPage.java">
@@ -1014,16 +990,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BuildAcceptanceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="39" selection-start="1149" selection-end="1149" vertical-scroll-proportion="0.43800697" vertical-offset="0" max-vertical-offset="1116">
-          <folding />
-        </state>
+        <state line="30" column="39" selection-start="1149" selection-end="1149" vertical-scroll-proportion="0.43800697" vertical-offset="0" max-vertical-offset="1116" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BAT.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="23" selection-start="973" selection-end="973" vertical-scroll-proportion="0.3696408" vertical-offset="113" max-vertical-offset="1040">
-          <folding />
-        </state>
+        <state line="35" column="23" selection-start="973" selection-end="973" vertical-scroll-proportion="0.3696408" vertical-offset="113" max-vertical-offset="1040" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/AbstractPage.java">
@@ -1040,77 +1012,71 @@
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10-sources.jar!/org/junit/internal/runners/statements/InvokeMethod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="5" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="0" selection-start="3973" selection-end="3973" vertical-scroll-proportion="1.9060403" vertical-offset="0" max-vertical-offset="1936">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/WebdriverBaseClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="345" selection-end="345" vertical-scroll-proportion="0.062893085" vertical-offset="24" max-vertical-offset="1056">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/local.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="18" selection-start="18" selection-end="18" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="877">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5136">
-          <folding />
-        </state>
+        <state line="20" column="5" selection-start="483" selection-end="483" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="384" />
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10-sources.jar!/org/junit/internal/runners/model/ReflectiveCallable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="405" selection-end="405" vertical-scroll-proportion="0.35220125" vertical-offset="0" max-vertical-offset="636">
-          <folding />
-        </state>
+        <state line="16" column="0" selection-start="405" selection-end="405" vertical-scroll-proportion="0.35220125" vertical-offset="0" max-vertical-offset="636" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/CampaignTestSuite.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="518" selection-end="518" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="304">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="146" column="8" selection-start="7452" selection-end="7513" vertical-scroll-proportion="0.0" vertical-offset="1632" max-vertical-offset="13264">
+        <state line="447" column="8" selection-start="15486" selection-end="15486" vertical-scroll-proportion="6.891892" vertical-offset="0" max-vertical-offset="7035">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.10/junit-4.10-sources.jar!/org/junit/internal/runners/statements/RunAfters.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="886" selection-end="886" vertical-scroll-proportion="0.7217391" vertical-offset="81" max-vertical-offset="656">
+        <state line="31" column="26" selection-start="735" selection-end="735" vertical-scroll-proportion="0.40938166" vertical-offset="0" max-vertical-offset="938" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/WebdriverBaseClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="0" selection-start="472" selection-end="472" vertical-scroll-proportion="0.02771855" vertical-offset="102" max-vertical-offset="1056">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/ActivityLogPage.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/local.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="447" column="8" selection-start="15486" selection-end="15486" vertical-scroll-proportion="0.0" vertical-offset="6492" max-vertical-offset="7504">
+        <state line="7" column="26" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="368">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/BulkAddCampaignsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="40" selection-start="8089" selection-end="8089" vertical-scroll-proportion="0.7189189" vertical-offset="1862" max-vertical-offset="10811">
+        <state line="47" column="28" selection-start="1710" selection-end="1710" vertical-scroll-proportion="0.33333334" vertical-offset="89" max-vertical-offset="8960">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCreateCampaignsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="28" selection-start="1639" selection-end="1639" vertical-scroll-proportion="0.33333334" vertical-offset="105" max-vertical-offset="13152">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/marin/qa/selenium/pageObjects/pages/CampaignsPage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="0" selection-start="1533" selection-end="1533" vertical-scroll-proportion="0.0" vertical-offset="725" max-vertical-offset="5104">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/campaigns/SingleCampaignsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="725" selection-end="725" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1760">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/marin/qa/selenium/CampaignTestSuite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="442" selection-end="442" vertical-scroll-proportion="0.18390805" vertical-offset="0" max-vertical-offset="609">
           <folding />
         </state>
       </provider>

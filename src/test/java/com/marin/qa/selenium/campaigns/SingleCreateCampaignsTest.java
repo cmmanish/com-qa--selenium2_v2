@@ -28,7 +28,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
     public static WebDriver driver = MarinApp.getApp();
 
     public SingleCreateCampaignsTest() {
+        log.info("===========================================");
         log.info("Now Running SingleCreateCampaignsTest Suite");
+        log.info("===========================================");
     }
 
     @BeforeClass
@@ -40,7 +42,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
     }
 
     @AfterClass
-    public static void cleanup() {
+    public static void testCleanup() {
         log.info("<--------- Start Logout Test --------->");
         clearAllPendingChanges(driver);
         logoutSuccessful(driver);
@@ -144,8 +146,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("End: T1SingleCreateGoogleShoppingCampaignNonUS()");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
     }
 
     @Test
@@ -243,8 +246,8 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("T2SingleCreateGoogleShoppingCampaignUSShoppingChannelBoth");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
@@ -343,14 +346,14 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("T3SingleCreateGoogleShoppingCampaignUSShoppingChannelOnline()");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T4SingleCreateGoogleShoppingCampaignUSShoppingChannelLocal() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         log.info("T4SingleCreateGoogleShoppingCampaignUSShoppingChannelLocal()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT4", 5);
         String merchantId = "100543509";
@@ -443,14 +446,14 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("End: T4SingleCreateGoogleShoppingCampaignUSShoppingChannelLocal");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T5SingleCreateGoogleSearchNetworkCampaignSearchPartnerDistribution() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT5", 5);
 
         String budget = "1.11";
@@ -541,14 +544,14 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("End: T1SingleCreateGoogleShoppingCampaignNonUS()");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T6SingleCreateGoogleSearchNetworkCampaignDisplaySelectDistribution() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         log.info("T6SingleCreateGoogleSearchNetworkCampaignDisplaySelectDistribution()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT6", 5);
 
@@ -638,14 +641,14 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.click(driver, HomePage.Link.Admin);
 
+        log.info("End: T6SingleCreateGoogleShoppingCampaignNonUS()");
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        log.info("End: T1SingleCreateGoogleShoppingCampaignNonUS()");
     }
 
     @Test
     public void T7SingleCreateGoogleSearchNetworkCampaignAllDistribution() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         log.info("Start: T7SingleCreateGoogleSearchNetworkCampaignAllDistribution()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT7", 5);
 
@@ -735,14 +738,14 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("End: T7SingleCreateGoogleSearchNetworkCampaignAllDistribution()");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T8SingleCreateGoogleDisplayNetworkOnlyCampaign() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         log.info("Start: T8SingleCreateGoogleDisplayNetworkOnlyCampaign()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT8", 5);
 
@@ -824,18 +827,8 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("Start: T8SingleCreateGoogleDisplayNetworkOnlyCampaign()");
-    }
-
-    public void testLogout() {
-        log.info("<--------- Start Logout Test --------->");
-        HomePage homePage = HomePage.getInstance();
-        clearAllPendingChanges(driver);
-        homePage.click(driver, HomePage.Link.Admin);
-        homePage.click(driver, HomePage.Link.Logout);
-        driver.close();
-        log.info("<--------- End Login Test --------->");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
 }

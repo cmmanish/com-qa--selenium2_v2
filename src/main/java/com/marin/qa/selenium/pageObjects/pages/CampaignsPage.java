@@ -139,7 +139,6 @@ public class CampaignsPage extends AbstractPage {
         if (isElementPresent(driver, button.getLocator()) == true) {
             changeElementBackground(driver, button.getLocator());
             String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
-            log.info(retval);
             removeElementBackground(driver, button.getLocator());
             log.info("Press \"" + button.toString() + "\" Button in \"" + this.getClass().getSimpleName() + "\"");
 
@@ -250,7 +249,6 @@ public class CampaignsPage extends AbstractPage {
         if (isElementPresent(driver, element)) {
             changeElementBackground(driver, element);
             String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
-            log.info(" " + retval);
             flag = true;
         }
 
