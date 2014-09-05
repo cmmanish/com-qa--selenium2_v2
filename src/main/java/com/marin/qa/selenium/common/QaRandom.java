@@ -150,29 +150,6 @@ public class QaRandom {
         return newArray;
     }
     
-    /**<p> This method set to return random array of unique elements with exception
-     *<p> @param array original
-     *<p> @param arrayCount max length of array 
-     *<p> @return String[]
-     *<p> @author mmadhusoodan 
-     **/
-    public String getRandomElementWithException(String[] array, int arrayCount, String ... exception){
-        
-        String[] newArray = new String[arrayCount];
-        if(array.length == arrayCount)
-            return array[arrayCount];
-        for (int index = 0; index < arrayCount; index++) {
-
-            String selectedElement = array[randomGenerator.nextInt(array.length - 1)];
-
-            while (Arrays.asList(newArray).contains(selectedElement) == true || Arrays.asList(exception).contains(selectedElement) == true) 
-                selectedElement = array[randomGenerator.nextInt(array.length - 1)];
-            
-            newArray[index] = selectedElement;
-        }
-        return getRandomElement(newArray);
-    }
-    
     /**
      * <p> This method set to return random array of unique elements
      * <p> @param array original
@@ -184,6 +161,19 @@ public class QaRandom {
 
         return array[randomGenerator.nextInt(array.length - 1)];
 
+    }
+    
+    public String getRandomElementWithException(String[] array, String exception){
+        
+        int max = array.length;
+        String randElement = "";
+        
+        for (int index = 0; index < max; index++) {
+            randElement = array[randomGenerator.nextInt(array.length)];
+            if (exception == randElement)
+                randElement = array[randomGenerator.nextInt(array.length)];
+        }
+        return randElement;
     }
             
 }

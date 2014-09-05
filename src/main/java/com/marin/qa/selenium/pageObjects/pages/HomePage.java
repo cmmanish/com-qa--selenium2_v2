@@ -230,7 +230,6 @@ public class HomePage extends AbstractPage {
         if (isElementPresent(driver, tab.getLocator()) == true) {
             changeElementBackground(driver, tab.getLocator());
             String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
-            log.info(retval);;
             removeElementBackground(driver, tab.getLocator());
             log.info("Select \"" + tab.toString() + "\" Tab in \"" + this.getClass().getSimpleName() + "\"");
 

@@ -1,11 +1,10 @@
 package com.marin.qa.selenium.pageObjects.pages;
 
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.thoughtworks.selenium.SeleniumException;
@@ -14,7 +13,7 @@ public abstract class AbstractPage {
 
     public static Logger log = Logger.getLogger(AbstractPage.class);
     public static final long LONG_PAGE_TIMEOUT = 121000;
-    public static final long TWO_SECONDS = 2000;
+    public static final long THREE_SECONDS = 3000;
     public static final long FIVE_SECONDS = 5000;
     public static final String ELEMENT_TIMEOUT = "65000";
     public static final String AJAX_TIMEOUT = "40000";
@@ -53,7 +52,7 @@ public abstract class AbstractPage {
             (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
                 public Boolean apply(WebDriver d) {
                     JavascriptExecutor js = (JavascriptExecutor) d;
-                    return (Boolean) js.executeScript("return $.active == 0");
+                    return (Boolean) js.executeScript("return jQuery.active == 0");
                 }
             });
         }
@@ -87,18 +86,22 @@ public abstract class AbstractPage {
      * Requires current selenium object to work with.
      *
      * 
-     *        The selenium instances currently in work.
+     *        wait for document.readyState to be complete
      */
     public void waitForPageToLoad(final WebDriver driver, final long timeout) {
 
+        ExpectedCondition<Boolean> expectation = new
+                ExpectedCondition<Boolean>() {
+                    public Boolean apply(WebDriver driver) {
+                        return ((JavascriptExecutor)driver).executeScript("return document.readyState").equals("complete");
+                    }
+                };
+
+        Wait<WebDriver> wait = new WebDriverWait(driver,30);
         try {
-
-            WebDriverWait wait = new WebDriverWait(driver, timeout);
-            //wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("top_right_logout_link")));
-
-        }
-        catch (Exception e) {
-            log.error("Failed to wait for page to be loaded in " + timeout + " msec");
+            wait.until(expectation);
+        } catch(Throwable error) {
+            log.info("Timeout waiting for Page Load Request to complete.");
         }
     }
 
@@ -132,8 +135,8 @@ public abstract class AbstractPage {
      *        The Element locator.
      */
     public void waitForSpinnerToDissappear(WebDriver driver, String locator) {
-        String query = "return $('" + locator + "').length == 0;";
-        //wait for the spinner do dissappear i.e length == 0 
+        String query = "return $('" + locator + "').is(':visible')";
+        //wait for the spinner do dissappear  is(':visible') false
         try {
             boolean retval = (Boolean) ((JavascriptExecutor) driver).executeScript(query);
             while (retval){
@@ -204,7 +207,7 @@ public abstract class AbstractPage {
     public boolean isElementPresent(final WebDriver driver, final String locator) {
 
         String query = "return $('" + locator + "').length > 0";
-        waitForJQuery(driver);
+       // waitForJQuery(driver);
         JavascriptExecutor jse;
         boolean retval = false;
         try {

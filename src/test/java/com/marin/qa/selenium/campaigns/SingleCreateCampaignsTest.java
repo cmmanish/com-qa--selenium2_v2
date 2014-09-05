@@ -9,6 +9,7 @@ import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignSta
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignType;
 import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CountryOfSale;
 import org.apache.log4j.Logger;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.Assert.assertNotNull;
 
 public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
@@ -25,6 +26,12 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
     public QaRandom random = QaRandom.getInstance();
 
     public static WebDriver driver = MarinApp.getApp();
+
+    public SingleCreateCampaignsTest() {
+        log.info("===========================================");
+        log.info("Now Running SingleCreateCampaignsTest Suite");
+        log.info("===========================================");
+    }
 
     @BeforeClass
     public static void testSetUp() {
@@ -35,12 +42,19 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
     }
 
     @AfterClass
-    public static void cleanup() {
+    public static void testCleanup() {
         log.info("<--------- Start Logout Test --------->");
         clearAllPendingChanges(driver);
         logoutSuccessful(driver);
         driver.close();
         log.info("<--------- End Logout Test --------->");
+    }
+
+    @After
+    public void RunAfterEachTest() {
+        log.info("Running RunAfterEachTest()");
+        HomePage homePage = HomePage.getInstance();
+        homePage.click(driver, HomePage.Link.Admin);
     }
 
     @Test
@@ -99,10 +113,11 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         }
 
         String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
+        if ("".equalsIgnoreCase(cartop)) {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -131,8 +146,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("End: T1SingleCreateGoogleShoppingCampaignNonUS()");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
     }
 
     @Test
@@ -195,6 +211,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
         log.info("cartop is " + cartop);
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
 
@@ -229,8 +246,8 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("T2SingleCreateGoogleShoppingCampaignUSShoppingChannelBoth");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
@@ -242,7 +259,6 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         String merchantId = "100543509";
         String budget = "1.11";
         String campaignPriority = random.getRandomElement(CampaignPriority);
-        String successLabel = "Campaign successfully created. See Activity Log for details.";
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
 
         calendar.setTime(Calendar.getInstance().getTime());
@@ -293,6 +309,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -329,20 +346,19 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("T3SingleCreateGoogleShoppingCampaignUSShoppingChannelOnline()");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T4SingleCreateGoogleShoppingCampaignUSShoppingChannelLocal() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         log.info("T4SingleCreateGoogleShoppingCampaignUSShoppingChannelLocal()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT4", 5);
         String merchantId = "100543509";
         String budget = "1.11";
         String campaignPriority = random.getRandomElement(CampaignPriority);
-        String successLabel = "Campaign successfully created. See Activity Log for details.";
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
 
         calendar.setTime(Calendar.getInstance().getTime());
@@ -393,6 +409,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -429,18 +446,17 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("End: T4SingleCreateGoogleShoppingCampaignUSShoppingChannelLocal");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T5SingleCreateGoogleSearchNetworkCampaignSearchPartnerDistribution() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT5", 5);
 
         String budget = "1.11";
-        String successLabel = "Campaign successfully created. See Activity Log for details.";
         calendar.setTime(Calendar.getInstance().getTime());
         final String startDate = groupFormaterDate.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
@@ -490,6 +506,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -527,19 +544,18 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("End: T1SingleCreateGoogleShoppingCampaignNonUS()");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T6SingleCreateGoogleSearchNetworkCampaignDisplaySelectDistribution() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         log.info("T6SingleCreateGoogleSearchNetworkCampaignDisplaySelectDistribution()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT6", 5);
 
         String budget = "1.11";
-        String successLabel = "Campaign successfully created. See Activity Log for details.";
         calendar.setTime(Calendar.getInstance().getTime());
         final String startDate = groupFormaterDate.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
@@ -589,6 +605,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -624,19 +641,18 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.click(driver, HomePage.Link.Admin);
 
+        log.info("End: T6SingleCreateGoogleShoppingCampaignNonUS()");
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        log.info("End: T1SingleCreateGoogleShoppingCampaignNonUS()");
     }
 
     @Test
     public void T7SingleCreateGoogleSearchNetworkCampaignAllDistribution() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         log.info("Start: T7SingleCreateGoogleSearchNetworkCampaignAllDistribution()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT7", 5);
 
         String budget = "1.11";
-        String successLabel = "Campaign successfully created. See Activity Log for details.";
         calendar.setTime(Calendar.getInstance().getTime());
         final String startDate = groupFormaterDate.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
@@ -686,6 +702,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -721,19 +738,18 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("End: T7SingleCreateGoogleSearchNetworkCampaignAllDistribution()");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
     public void T8SingleCreateGoogleDisplayNetworkOnlyCampaign() throws Exception {
 
-        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         log.info("Start: T8SingleCreateGoogleDisplayNetworkOnlyCampaign()");
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT8", 5);
 
-        String budget = "1.11";
-        String successLabel = "Campaign successfully created. See Activity Log for details.";
+        String dailyBudget = "1." + random.getRandomInteger(2);
         calendar.setTime(Calendar.getInstance().getTime());
         final String startDate = groupFormaterDate.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
@@ -759,7 +775,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.Status, CampaignStatus.ACTIVE.toString());
         newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.CampaignType, CampaignType.DISPLAYNETWORKONLY.toString());
 
-        newGoogleCampaignsPage.type(driver, NewGoogleCampaignPage.TextInput.Budget, budget);
+        newGoogleCampaignsPage.type(driver, NewGoogleCampaignPage.TextInput.Budget, dailyBudget);
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
@@ -778,6 +794,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
             homePage.click(driver, HomePage.Link.Admin);
             cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
         }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
         log.info("cartop is " + cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
@@ -806,22 +823,12 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Start Date in the Settings Page don't match ", startDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.StateDate));
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
 
-        assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
+        assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         log.info("Start: T8SingleCreateGoogleDisplayNetworkOnlyCampaign()");
-    }
-
-    public void testLogout() {
-        log.info("<--------- Start Logout Test --------->");
-        HomePage homePage = HomePage.getInstance();
-        clearAllPendingChanges(driver);
-        homePage.click(driver, HomePage.Link.Admin);
-        homePage.click(driver, HomePage.Link.Logout);
-        driver.close();
-        log.info("<--------- End Login Test --------->");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
 }

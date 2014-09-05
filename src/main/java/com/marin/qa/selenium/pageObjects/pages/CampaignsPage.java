@@ -24,15 +24,12 @@ public class CampaignsPage extends AbstractPage {
         return instance;
     }
 
-    public final static String CAMPAIGN_VIEW = "150CampaignsAllButDeleted";
+    public final static String CAMPAIGN_VIEW = "500CampaignsAllButDeleted";
 
     /**
      * Link Element as list of all links on page
      *
-     * @param locator     as jQuery mapping for Label element locator
-     * @param spinner     as jQuery mapping for spinner
-     * @param pageLoad    as jQuery mapping for pageLoad
-     * @param description as description for Label element
+     *
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -75,10 +72,7 @@ public class CampaignsPage extends AbstractPage {
     /**
      * Link Element as list of all links on page
      *
-     * @param locator     as jQuery mapping for Button element locator
-     * @param spinner     as jQuery mapping for spinner
-     * @param pageLoad    as jQuery mapping for pageLoad
-     * @param description as description for Button element
+     *
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -133,10 +127,10 @@ public class CampaignsPage extends AbstractPage {
     /**
      * This Method set to click on Button on page
      *
-     * @param selenium
+     *
      * @param button
      * @return CampaignsPage
-     * @author mbeider
+     * @author mmadhusoodan
      */
     public CampaignsPage click(WebDriver driver, Button button) {
 
@@ -145,7 +139,6 @@ public class CampaignsPage extends AbstractPage {
         if (isElementPresent(driver, button.getLocator()) == true) {
             changeElementBackground(driver, button.getLocator());
             String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
-            log.info(retval);
             removeElementBackground(driver, button.getLocator());
             log.info("Press \"" + button.toString() + "\" Button in \"" + this.getClass().getSimpleName() + "\"");
 
@@ -165,10 +158,7 @@ public class CampaignsPage extends AbstractPage {
     /**
      * Link Element as list of all links on page
      *
-     * @param locator     as jQuery mapping for Link element locator
-     * @param spinner     as jQuery mapping for spinner
-     * @param pageLoad    as jQuery mapping for pageLoad
-     * @param description as description for Link element
+     *
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -214,10 +204,9 @@ public class CampaignsPage extends AbstractPage {
     /**
      * This Method set to click on Button on page
      *
-     * @param selenium
-     * @param button
+     *
      * @return CampaignsPage
-     * @author mbeider
+     * @author mmadhusoodan
      */
     public CampaignsPage click(WebDriver driver, Link link) {
 
@@ -246,11 +235,9 @@ public class CampaignsPage extends AbstractPage {
     /**
      * This Method set to open Campaign details by column information
      *
-     * @param selenium
-     * @param column
-     * @param option
+     *
      * @return boolean
-     * @author mbeider
+     * @author mmadhusoodan
      */
     public boolean open(WebDriver driver, String campaignName) {
 
@@ -262,7 +249,6 @@ public class CampaignsPage extends AbstractPage {
         if (isElementPresent(driver, element)) {
             changeElementBackground(driver, element);
             String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
-            log.info(" " + retval);
             flag = true;
         }
 
@@ -274,10 +260,8 @@ public class CampaignsPage extends AbstractPage {
     /**
      * DropDownMenu Element as list of all drop down menus on page
      *
-     * @param locator     as jQuery mapping for DropDown Menu element locator
-     * @param spinner     as jQuery mapping for spinner
-     * @param pageLoad    as jQuery mapping for pageLoad
-     * @param description as description for DropDownMenu element
+     *
+     *
      * @author mmadhusoodan
      * @version 2.00
      */
@@ -320,11 +304,11 @@ public class CampaignsPage extends AbstractPage {
     /**
      * This Method set to select option in drop down menu
      *
-     * @param selenium
+     *
      * @param menu
      * @param option
      * @return ActivityLogPage
-     * @author mbeider
+     * @author mmadhusoodan
      */
     public CampaignsPage select(WebDriver driver, DropDownMenu menu, String option) {
 
@@ -336,7 +320,7 @@ public class CampaignsPage extends AbstractPage {
             log.info("Select \"" + option + "\" option in \"" + menu.toString() + "\" Drop Down Menu in \"" + this.getClass().getSimpleName() + "\"");
 
             if (menu.getSpinner() != null) {
-                waitForElementToDissappear(driver, menu.getSpinner());
+                waitForSpinnerToDissappear(driver, menu.getSpinner());
             }
 
             if (menu.getPageLoad()) {
