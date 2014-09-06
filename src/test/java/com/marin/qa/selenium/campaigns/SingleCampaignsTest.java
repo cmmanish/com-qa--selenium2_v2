@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 import static org.junit.Assert.assertEquals;
 
-public class SingleCampaignsTest extends WebdriverBaseClass {
+public class  SingleCampaignsTest extends WebdriverBaseClass {
 
     public static Logger log = Logger.getLogger(SingleCampaignsTest.class);
     public static WebDriver driver = MarinApp.getApp();
