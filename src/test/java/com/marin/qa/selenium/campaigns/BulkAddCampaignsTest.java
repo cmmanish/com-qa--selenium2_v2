@@ -62,7 +62,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         log.info("Running RunAfterEachTest()");
         HomePage homePage = HomePage.getInstance();
         homePage.click(driver, HomePage.Link.Admin);
-        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     /*
@@ -116,6 +116,13 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
          assertNotNull(cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
+
+        try {
+            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
+        }
+        catch (AssertionError e) {
+            e.toString();
+        }
 
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
@@ -193,6 +200,13 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
 
+        try {
+            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
+        }
+        catch (AssertionError e) {
+            e.toString();
+        }
+
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
@@ -265,6 +279,13 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertNotNull(cartop);
         activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
         activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
+
+        try {
+            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
+        }
+        catch (AssertionError e) {
+            e.toString();
+        }
 
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
@@ -488,7 +509,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         }
 
         if (!local && !online )  {
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
+            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
             assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
         }
         
