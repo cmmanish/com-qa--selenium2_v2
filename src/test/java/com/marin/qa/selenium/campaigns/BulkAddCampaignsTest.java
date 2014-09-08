@@ -526,7 +526,6 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String status = CampaignStatus.ACTIVE.toString();
         String dailyBudget = "1." + random.getRandomInteger(2);
         String merchantId = "100543509";
-        String shoppingChannels = "online";
         String campaignPriority = random.getRandomElement(CampaignPriority);
 
         String bulkCreateCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";

@@ -1,6 +1,5 @@
 package com.marin.qa.selenium;
 
-import com.marin.qa.selenium.campaigns.BuildAcceptanceTest;
 import com.marin.qa.selenium.campaigns.BulkAddCampaignsTest;
 import com.marin.qa.selenium.campaigns.SingleCampaignsTest;
 import com.marin.qa.selenium.campaigns.SingleCreateCampaignsTest;
