@@ -59,7 +59,4 @@ public class BuildAcceptanceTest extends WebdriverBaseClass {
     public void E2testSingleCreateGoogleShoppingCampaignNonUS() throws Exception {
         log.info("E2");
     }
-
-
-
 }
