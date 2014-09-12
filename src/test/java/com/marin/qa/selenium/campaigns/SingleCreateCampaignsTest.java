@@ -57,6 +57,37 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         homePage.click(driver, HomePage.Link.Admin);
     }
 
+    public void verifyAndPostCartop(String description) {
+
+        log.info("go to activity log and verify the Cartops");
+        HomePage homePage = HomePage.getInstance();
+        homePage.click(driver, HomePage.Link.Admin);
+        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
+        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
+
+        while ("0".equalsIgnoreCase(postCount)) {
+            homePage.click(driver, HomePage.Link.Admin);
+            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
+        }
+
+        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, description);
+        if ("".equalsIgnoreCase(cartop)) {
+            homePage.click(driver, HomePage.Link.Admin);
+            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, description);
+        }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
+        log.info("cartop is " + cartop);
+        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
+        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
+
+        try {
+            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
+        }
+        catch (AssertionError e) {
+            e.toString();
+        }
+    }
+
     @Test
     public void T1SingleCreateGoogleShoppingCampaignNonUS() throws Exception {
 
@@ -102,32 +133,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
-        log.info("go to activity log and verify the Cartops");
-        homePage.click(driver, HomePage.Link.Admin);
-        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if ("".equalsIgnoreCase(cartop)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        }
-        assertNotNull("Can't find the cartop. Something is fishy", cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         log.info("go to campaing settings and verify the settings ");
@@ -197,30 +203,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
-        homePage.click(driver, HomePage.Link.Admin);
-        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        }
-        log.info("cartop is " + cartop);
-        assertNotNull("Can't find the cartop. Something is fishy", cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
@@ -294,32 +277,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
-        log.info("go to activity log and verify the Cartops");
-
-        homePage.click(driver, HomePage.Link.Admin);
-        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        }
-        assertNotNull("Can't find the cartop. Something is fishy", cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         log.info("go to campaing settings and verify the settings ");
@@ -394,32 +352,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
-        log.info("go to activity log and verify the Cartops");
-
-        homePage.click(driver, HomePage.Link.Admin);
-        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        }
-        assertNotNull("Can't find the cartop. Something is fishy", cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         log.info("go to campaing settings and verify the settings ");
@@ -491,32 +424,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
-        log.info("go to activity log and verify the Cartops");
-
-        homePage.click(driver, HomePage.Link.Admin);
-        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        }
-        assertNotNull("Can't find the cartop. Something is fishy", cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         log.info("go to campaing settings and verify the settings ");
@@ -590,32 +498,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
-        log.info("go to activity log and verify the Cartops");
-        homePage.click(driver, HomePage.Link.Admin);
-        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        }
-        assertNotNull("Can't find the cartop. Something is fishy", cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
@@ -687,32 +570,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
-        log.info("go to activity log and verify the Cartops");
-        homePage.click(driver, HomePage.Link.Admin);
-        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        }
-        assertNotNull("Can't find the cartop. Something is fishy", cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
@@ -779,32 +637,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         newGoogleCampaignsPage.clickButton(driver, NewGoogleCampaignPage.Button.Save);
 
-        log.info("go to activity log and verify the Cartops");
-        homePage.click(driver, HomePage.Link.Admin);
-        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
-        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-
-        while ("0".equalsIgnoreCase(postCount)) {
-            homePage.click(driver, HomePage.Link.Admin);
-            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
-        }
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, singleCreateCampaign);
-        }
-        assertNotNull("Can't find the cartop. Something is fishy", cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
