@@ -1,16 +1,9 @@
 package com.marin.qa.selenium.campaigns;
 
-import com.marin.qa.selenium.WebdriverBaseClass;
-import com.marin.qa.selenium.common.MarinApp;
-import com.marin.qa.selenium.common.QaRandom;
-import com.marin.qa.selenium.pageObjects.pages.ActivityLogPage;
-import com.marin.qa.selenium.pageObjects.pages.BulkAddEditCampaignsPage;
-import com.marin.qa.selenium.pageObjects.pages.CampaignSettingsPage;
-import com.marin.qa.selenium.pageObjects.pages.CampaignSettingsPage.CampaignPriority;
-import com.marin.qa.selenium.pageObjects.pages.CampaignsPage;
-import com.marin.qa.selenium.pageObjects.pages.HomePage;
-import com.marin.qa.selenium.pageObjects.pages.SingleCampaignPage;
-import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignStatus;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import java.util.Calendar;
 
 import org.apache.log4j.Logger;
 import org.junit.After;
@@ -19,10 +12,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Calendar;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import com.marin.qa.selenium.WebdriverBaseClass;
+import com.marin.qa.selenium.common.MarinApp;
+import com.marin.qa.selenium.common.QaRandom;
+import com.marin.qa.selenium.pageObjects.pages.ActivityLogPage;
+import com.marin.qa.selenium.pageObjects.pages.BulkAddEditCampaignsPage;
+import com.marin.qa.selenium.pageObjects.pages.CampaignSettingsPage;
+import com.marin.qa.selenium.pageObjects.pages.CampaignsPage;
+import com.marin.qa.selenium.pageObjects.pages.HomePage;
+import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignStatus;
+import com.marin.qa.selenium.pageObjects.pages.SingleCampaignPage;
 
 public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
@@ -35,7 +34,6 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         log.info("Now Running BulkAddCampaignsTest Suite");  
     }
     
-
     @BeforeClass
     public static void testSetUp() {
         log.info("<--------- Start Setup Test --------->");
@@ -65,6 +63,36 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
+    public void verifyAndPostCartop(String description) {
+
+        log.info("go to activity log and verify the Cartops");
+        HomePage homePage = HomePage.getInstance();
+        homePage.click(driver, HomePage.Link.Admin);
+        ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
+        String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
+
+        while ("0".equalsIgnoreCase(postCount)) {
+            homePage.click(driver, HomePage.Link.Admin);
+            postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
+        }
+
+        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, description);
+        if ("".equalsIgnoreCase(cartop)) {
+            homePage.click(driver, HomePage.Link.Admin);
+            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, description);
+        }
+        assertNotNull("Can't find the cartop. Something is fishy", cartop);
+        log.info("cartop is " + cartop);
+        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
+        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
+
+        try {
+            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
+        }
+        catch (AssertionError e) {
+            e.toString();
+        }
+    }
     /*
      * Sample Bulk Sheet
      * Account Campaign Network Merchant ID Country of Sale Campaign Priority Shopping Channels
@@ -104,26 +132,8 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.type(driver, BulkAddEditCampaignsPage.TextArea.Campaigns, headers + contents);
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
-        homePage.click(driver, HomePage.Link.Admin);
-        activityLogPage.waitForPostCount(driver);
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
-        }
-        log.info("cartop is " + cartop);
-         assertNotNull(cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
-
+        verifyAndPostCartop(bulkCreateCampaign);
+        
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
@@ -187,25 +197,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.type(driver, BulkAddEditCampaignsPage.TextArea.Campaigns, headers + contents);
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
-        homePage.click(driver, HomePage.Link.Admin);
-
-        activityLogPage.waitForPostCount(driver);
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
-        }
-        assertNotNull(cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(bulkCreateCampaign);
 
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
@@ -266,26 +258,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.type(driver, BulkAddEditCampaignsPage.TextArea.Campaigns, headers + contents);
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
-        homePage.click(driver, HomePage.Link.Admin);
-
-        activityLogPage.waitForPostCount(driver);
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
-        }
-        log.info("cartop is " + cartop);
-        assertNotNull(cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(bulkCreateCampaign);
 
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
@@ -356,25 +329,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.type(driver, BulkAddEditCampaignsPage.TextArea.Campaigns, headers + contents);
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
-        homePage.click(driver, HomePage.Link.Admin);
-        activityLogPage.waitForPostCount(driver);
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign );
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign );
-        }
-        log.info("cartop is " + cartop);
-        assertNotNull("Can't find the cartop. Something is fishy",cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(bulkEditCampaign);
 
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
@@ -453,26 +408,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.type(driver, BulkAddEditCampaignsPage.TextArea.Campaigns, headers + contents);
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
-        homePage.click(driver, HomePage.Link.Admin);
-        activityLogPage.waitForPostCount(driver);
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkEditCampaign);
-        }
-
-        assertNotNull("Can't find the cartop. Something is fishy",cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
+        verifyAndPostCartop(bulkEditCampaign);
 
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
@@ -526,10 +462,9 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String status = CampaignStatus.ACTIVE.toString();
         String dailyBudget = "1." + random.getRandomInteger(2);
         String merchantId = "100543509";
-        String shoppingChannels = "online";
         String campaignPriority = random.getRandomElement(CampaignPriority);
 
-        String bulkCreateCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";
+        String bulkEditCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";
 
         final String startDate = "8/22/14";
         final String endDate = "12/31/14";
@@ -547,26 +482,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         bulkAddEditCampaignsPage.type(driver, BulkAddEditCampaignsPage.TextArea.Campaigns, headers + contents);
         bulkAddEditCampaignsPage.click(driver, BulkAddEditCampaignsPage.Button.Process);
 
-        homePage.click(driver, HomePage.Link.Admin);
-        activityLogPage.waitForPostCount(driver);
-
-        String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
-        if (cartop.equalsIgnoreCase("")) {
-            homePage.click(driver, HomePage.Link.Admin);
-            cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, bulkCreateCampaign);
-        }
-        assertNotNull("Can't find the cartop. Something is fishy",cartop);
-        log.info("cartop is " + cartop);
-        activityLogPage.check(driver, ActivityLogPage.Column.ID, cartop);
-        activityLogPage.click(driver, ActivityLogPage.Button.PostNow);
-
-        try {
-            assertEquals("Cartop failed ", "Succeeded", activityLogPage.waitForCartopStatus(driver, cartop));
-        }
-        catch (AssertionError e) {
-            e.toString();
-        }
-
+        verifyAndPostCartop(bulkEditCampaign);
         // Verify the Campaign Settings
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
@@ -592,6 +508,4 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         homePage.click(driver, HomePage.Link.Admin);
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
-
-
 }
