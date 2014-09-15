@@ -70,10 +70,12 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         homePage.click(driver, HomePage.Link.Admin);
         ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
         String postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
+        int tryCount = 0;
 
-        while ("0".equalsIgnoreCase(postCount)) {
+        while ("0".equalsIgnoreCase(postCount) && tryCount != 5) {
             homePage.click(driver, HomePage.Link.Admin);
             postCount = activityLogPage.getInfo(driver, ActivityLogPage.Label.PostCount);
+            tryCount ++;
         }
 
         String cartop = activityLogPage.getInfo(driver, ActivityLogPage.Column.ID, ActivityLogPage.Column.Description, description);
@@ -358,7 +360,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
         log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String account = GOOGLE_ACCOUNT;
-        String campaignName = "auto_ShoppingCampaign_Priority";
+        String campaignName = "auto_ShoppingCampaign_Channel";
         
         log.info("Get the current Shoppping Channel ahead of time");
         HomePage homePage = HomePage.getInstance();
@@ -385,7 +387,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String status = CampaignStatus.ACTIVE.toString();
         String merchantId = "100543509";
         String bulkEditCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";
-        final String startDate = "8/22/14";
+        final String startDate = "9/15/14";
         final String endDate = "12/31/14";
         
         String shoppingChannel = "";
@@ -458,7 +460,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
         log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         String account = GOOGLE_ACCOUNT;
-        String campaignName = "auto_ShoppingCampaign_Priority";
+        String campaignName = "auto_ShoppingCampaign_budget";
         String status = CampaignStatus.ACTIVE.toString();
         String dailyBudget = "1." + random.getRandomInteger(2);
         String merchantId = "100543509";
@@ -466,7 +468,7 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
         String bulkEditCampaign = "Bulk Edit: Google Campaign: " + campaignName + ".";
 
-        final String startDate = "8/22/14";
+        final String startDate = "9/12/14";
         final String endDate = "12/31/14";
 
         String headers = "Account\tCampaign\tDaily Budget\\n";
