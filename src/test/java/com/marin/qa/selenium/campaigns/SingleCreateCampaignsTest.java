@@ -100,8 +100,6 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         filter.apply(driver, Filter.Column.Campaign, Filter.Menu.Contains, campaignName);
 
         //get the campaign Count
-
-
     }
 
     @Test
@@ -350,7 +348,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.CampaignType, CampaignType.SEARCHNETWORK.toString());
 
         newGoogleCampaignsPage.uncheck(driver, NewGoogleCampaignPage.Checkbox.SearchPartners);
-
+        newGoogleCampaignsPage.check(driver, NewGoogleCampaignPage.Checkbox.DisplaySelect);
         newGoogleCampaignsPage.check(driver, NewGoogleCampaignPage.Checkbox.KeywordMatching);
 
         newGoogleCampaignsPage.type(driver, NewGoogleCampaignPage.TextInput.Budget, budget);
@@ -421,7 +419,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         newGoogleCampaignsPage.select(driver, NewGoogleCampaignPage.DropDownMenu.CampaignType, CampaignType.SEARCHNETWORK.toString());
 
         newGoogleCampaignsPage.check(driver, NewGoogleCampaignPage.Checkbox.SearchPartners);
-
+        newGoogleCampaignsPage.check(driver, NewGoogleCampaignPage.Checkbox.DisplaySelect);
         newGoogleCampaignsPage.check(driver, NewGoogleCampaignPage.Checkbox.KeywordMatching);
 
         newGoogleCampaignsPage.type(driver, NewGoogleCampaignPage.TextInput.Budget, budget);

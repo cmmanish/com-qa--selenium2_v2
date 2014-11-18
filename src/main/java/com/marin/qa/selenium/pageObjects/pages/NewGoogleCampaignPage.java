@@ -167,6 +167,7 @@ public class NewGoogleCampaignPage extends AbstractPage {
     public static enum Checkbox {
         
         SearchPartners("[name=\"distributionNetwork\"]", null, false, "Search Partners"),
+        DisplaySelect("#campaignDisplayNetwork", null, false, "Display Select"),
         KeywordMatching("[name=\"keywordMatchingOnInput\"]", null, false, "Keyword Matching");
         
         private String locator;
