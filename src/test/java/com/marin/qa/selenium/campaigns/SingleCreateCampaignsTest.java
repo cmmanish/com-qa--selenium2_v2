@@ -179,6 +179,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         String campaignName = random.getRandomStringWithPrefix("CampaignNameT2", 5);
         String merchantId = "100543509";
+        String countryOfSale = "United States";
         String budget = "1.11";
         String campaignPriority = random.getRandomElement(CampaignPriority);
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
@@ -235,6 +236,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Status in the Settings Page don't match ", CampaignStatus.ACTIVE.toString(), campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.Status));
         assertEquals("Campaign Start Date in the Settings Page don't match ", startDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.StateDate));
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
+
+        assertEquals("Campaign MerchantId in the Settings Page don't match ", merchantId, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.MerchantId));
+        assertEquals("Campaign Country Of Sale in the Settings Page don't match ", merchantId, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.CountryOfSale));
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
