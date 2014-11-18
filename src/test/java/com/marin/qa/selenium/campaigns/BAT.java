@@ -1,14 +1,11 @@
 package com.marin.qa.selenium.campaigns;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import com.marin.qa.selenium.common.QaRandom;
 
 public class BAT {
 
