@@ -11,7 +11,7 @@ public class QaProperties { // singleton
     private QaProperties() {
     };
 
-    private static String HOME_DIR = "/Users/mmadhusoodan/qa/workspace/com-qa-marin-selenium2";
+    private static String HOME_DIR = "/Users/mmadhusoodan/Google Drive/workspace/com-qa-selenium2_v2";
 
     public static QaProperties getGlobals() {
         if (globalsInstance == null) {

@@ -25,7 +25,7 @@
         <module name="qa.common.selenium2" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.6">
+    <bytecodeTargetLevel>
       <module name="qa.common.selenium2" target="1.6" />
     </bytecodeTargetLevel>
   </component>

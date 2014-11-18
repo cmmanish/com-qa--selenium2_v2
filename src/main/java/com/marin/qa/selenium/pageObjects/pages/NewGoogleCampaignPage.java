@@ -166,10 +166,7 @@ public class NewGoogleCampaignPage extends AbstractPage {
     
     public static enum Checkbox {
         
-        Online("#shoppingChannelOnline", null, false, "Online"),
-        Local("#shoppingChannelLocal", null, false, "Local"),
         SearchPartners("[name=\"distributionNetwork\"]", null, false, "Search Partners"),
-        DisplaySelect("[name=\"distributionContent\"]", null, false, "Display Select"),
         KeywordMatching("[name=\"keywordMatchingOnInput\"]", null, false, "Keyword Matching");
         
         private String locator;

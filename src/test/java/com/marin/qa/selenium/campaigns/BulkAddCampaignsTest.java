@@ -155,8 +155,6 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Merchant Id in the Settings Page don't match ", merchantId, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.MerchantId));
         assertEquals("Campaign budget in the Settings Page don't match ", countryOfSale, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.CountryOfSale));
 
-        assertEquals("Campaign Shopping Channel Online in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
-        assertEquals("Campaign Shopping Channel Online in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
         homePage.click(driver, HomePage.Link.Admin);
@@ -219,8 +217,6 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        assertEquals("Campaign Shopping Channel Online in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
-        assertEquals("Campaign Shopping Channel Local in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
         homePage.click(driver, HomePage.Link.Admin);
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
@@ -378,8 +374,6 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         singleCampaignPage.select(driver, SingleCampaignPage.Tab.Settings);
         
         //get the Shoppping Channel checkbox values
-        boolean local = campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local);
-        boolean online = campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online);
         String campaignPriority = campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority);
         String dailyBudget = campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget);
         
@@ -391,14 +385,6 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         final String endDate = "12/31/14";
         
         String shoppingChannel = "";
-        if (local && online )  shoppingChannel = "local";
-        
-        if (local && !online )  shoppingChannel = "Online";
-        
-        if (!local && online )  shoppingChannel = "local";
-
-        if (!local && !online )  shoppingChannel = "Online";
-        
 
         String headers = "Account\tCampaign\tShopping Channels\\n";
         String contents = account + TAB + campaignName + TAB + shoppingChannel + END_OF_LINE;
@@ -431,26 +417,6 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign Priority in the Settings Page don't match ", campaignPriority, campaignSettingsPage.getSelected(driver, CampaignSettingsPage.DropDownMenu.CampaignPriority));
         assertEquals("Campaign budget in the Settings Page don't match ", dailyBudget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
-        if (local && online )  {
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
-        }
-        
-        if (local && !online ) {
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
-        }
-        
-        if (!local && online )  {
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
-        }
-
-        if (!local && !online )  {
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Local));
-            assertEquals("Campaign Shopping Channel in the Settings Page don't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.Online));
-        }
-        
         homePage.click(driver, HomePage.Link.Admin);
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }

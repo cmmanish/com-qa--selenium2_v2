@@ -8,7 +8,7 @@
   <name>Selenium2 Project</name>
   <url>http://maven.apache.org</url>
     <properties>
-        <selenium_version>2.42.0</selenium_version>
+        <selenium_version>2.43.1</selenium_version>
         <test.excludes>**/*Test.java</test.excludes>
     </properties>
 

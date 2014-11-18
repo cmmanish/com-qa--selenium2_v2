@@ -172,8 +172,6 @@ public class CampaignSettingsPage extends AbstractPage {
     
     public static enum Checkbox {
         
-        Online("#shoppingChannelOnline", null, false, "Online"),
-        Local("#shoppingChannelLocal", null, false, "Local"),
         SearchPartners("#campaignSearchPartner", null, false, "Search Partners"),
         DisplaySelect("#campaignDisplayNetwork", null, false, "Display Select"),
         KeywordMatching("#keywordMatchingOnInput", null, false, "Keyword Matching");

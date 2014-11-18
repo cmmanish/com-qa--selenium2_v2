@@ -12,7 +12,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
         BuildAcceptanceTest.class,
         SingleCreateCampaignsTest.class,
-        BulkAddCampaignsTest.class
+       /*  BulkAddCampaignsTest.class*/
 })
 public class CampaignTestSuite {
 

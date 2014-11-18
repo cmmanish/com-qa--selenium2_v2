@@ -36,7 +36,8 @@ public class CampaignsPage extends AbstractPage {
     public static enum Label {
 
         Success("#campaign_table_flash", "Success"),
-        Cancel("[name=\"cancel\"]", "Cancel");
+        Cancel("[name=\"cancel\"]", "Cancel"),
+        TotalCampaigns(".FooterTotalLabel","Total for all 7 campaigns" );
 
         private String locator;
         private String description;
@@ -59,6 +60,15 @@ public class CampaignsPage extends AbstractPage {
         public String toString() {
             return description;
         }
+    }
+
+    public String getCampaignsCount(WebDriver driver, Label label) {
+
+        String query = "return $('" + label.getLocator() + "').text().trim();";
+        //Get Label text
+        String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
+        //retval.split()
+        return retval;
     }
 
     public String getInfo(WebDriver driver, Label label) {
