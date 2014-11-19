@@ -6,15 +6,12 @@ import static org.junit.Assert.assertNotNull;
 import java.util.Calendar;
 
 import org.apache.log4j.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
 
 import com.marin.qa.selenium.WebdriverBaseClass;
 import com.marin.qa.selenium.common.MarinApp;
-import com.marin.qa.selenium.common.QaRandom;
+import com.marin.qa.selenium.Util.QaRandom;
 import com.marin.qa.selenium.pageObjects.pages.ActivityLogPage;
 import com.marin.qa.selenium.pageObjects.pages.BulkAddEditCampaignsPage;
 import com.marin.qa.selenium.pageObjects.pages.CampaignSettingsPage;
@@ -27,6 +24,8 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
 
     
     public static Logger log = Logger.getLogger(BulkAddCampaignsTest.class);
+
+    @Rule
     public static WebDriver driver = MarinApp.getApp();
     public QaRandom random = QaRandom.getInstance();
     

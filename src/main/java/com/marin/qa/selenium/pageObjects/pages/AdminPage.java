@@ -4,8 +4,6 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-import com.thoughtworks.selenium.Selenium;
-
 public class AdminPage extends AbstractPage {
 
 	private static AdminPage instance;
