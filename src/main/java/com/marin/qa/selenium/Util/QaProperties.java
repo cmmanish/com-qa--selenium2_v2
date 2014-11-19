@@ -1,4 +1,4 @@
-package com.marin.qa.selenium.common;
+package com.marin.qa.selenium.Util;
 
 import java.io.FileInputStream;
 import java.io.File;

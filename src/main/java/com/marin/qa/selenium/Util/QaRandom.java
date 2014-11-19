@@ -1,10 +1,9 @@
-package com.marin.qa.selenium.common;
+package com.marin.qa.selenium.Util;
 
 import java.util.Arrays;
 import java.util.Random;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * This class generates random data for use in testing.

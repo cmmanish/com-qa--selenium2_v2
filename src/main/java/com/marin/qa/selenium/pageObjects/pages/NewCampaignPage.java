@@ -3,7 +3,6 @@ package com.marin.qa.selenium.pageObjects.pages;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import com.thoughtworks.selenium.Selenium;
 
 public class NewCampaignPage extends AbstractPage {
 

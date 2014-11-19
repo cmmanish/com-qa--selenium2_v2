@@ -1,13 +1,9 @@
 package com.marin.qa.selenium.campaigns;
 
-import com.marin.qa.selenium.WebdriverBaseClass;
-import com.marin.qa.selenium.common.MarinApp;
-import com.marin.qa.selenium.common.QaRandom;
-import com.marin.qa.selenium.pageObjects.bubble.Filter;
-import com.marin.qa.selenium.pageObjects.pages.*;
-import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignStatus;
-import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignType;
-import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CountryOfSale;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Calendar;
+
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -15,10 +11,19 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
-import java.util.Calendar;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import com.marin.qa.selenium.WebdriverBaseClass;
+import com.marin.qa.selenium.Util.QaRandom;
+import com.marin.qa.selenium.common.MarinApp;
+import com.marin.qa.selenium.pageObjects.bubble.Filter;
+import com.marin.qa.selenium.pageObjects.pages.CampaignSettingsPage;
+import com.marin.qa.selenium.pageObjects.pages.CampaignsPage;
+import com.marin.qa.selenium.pageObjects.pages.HomePage;
+import com.marin.qa.selenium.pageObjects.pages.NewCampaignPage;
+import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage;
+import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignStatus;
+import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CampaignType;
+import com.marin.qa.selenium.pageObjects.pages.NewGoogleCampaignPage.CountryOfSale;
+import com.marin.qa.selenium.pageObjects.pages.SingleCampaignPage;
 
 public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
@@ -105,7 +110,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         verifyAndPostCartop(driver, singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
-        log.info("go to campaing settings and verify the settings ");
+        log.info("go to Campaign settings and verify the settings ");
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
 
         // Open the Campaign via clicking the link and go to Settings tab
@@ -193,7 +198,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
 
         assertEquals("Campaign MerchantId in the Settings Page don't match ", merchantId, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.MerchantId));
-        assertEquals("Campaign Country Of Sale in the Settings Page don't match ", merchantId, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.CountryOfSale));
+        assertEquals("Campaign Country Of Sale in the Settings Page don't match ", countryOfSale, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.Label.CountryOfSale));
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
@@ -202,10 +207,10 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
     }
 
     @Test
-    public void T5SingleCreateGoogleSearchNetworkCampaignSearchPartnerDistribution() throws Exception {
+    public void T3SingleCreateGoogleSearchNetworkCampaignSearchPartnerDistribution() throws Exception {
 
         log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        String campaignName = random.getRandomStringWithPrefix("CampaignNameT5", 5);
+        String campaignName = random.getRandomStringWithPrefix("CampaignNameT3", 5);
 
         String budget = "1.11";
         calendar.setTime(Calendar.getInstance().getTime());
@@ -244,7 +249,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         verifyAndPostCartop(driver, singleCreateCampaign);
 
         homePage.select(driver, HomePage.Tab.Campaigns);
-        log.info("go to campaing settings and verify the settings ");
+        log.info("go to campaign settings and verify the settings ");
 
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
 
@@ -262,7 +267,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
 
         assertEquals("Search Partners Distribution didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.SearchPartners));
-        assertEquals("Diplay Partners Distribution didn't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.DisplaySelect));
+        assertEquals("Display Partners Distribution didn't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.DisplaySelect));
         assertEquals("KeywordMatching didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.KeywordMatching));
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
@@ -274,11 +279,11 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
     }
 
     @Test
-    public void T6SingleCreateGoogleSearchNetworkCampaignDisplaySelectDistribution() throws Exception {
+    public void T4SingleCreateGoogleSearchNetworkCampaignDisplaySelectDistribution() throws Exception {
 
         log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        log.info("T6SingleCreateGoogleSearchNetworkCampaignDisplaySelectDistribution()");
-        String campaignName = random.getRandomStringWithPrefix("CampaignNameT6", 5);
+        log.info("T4SingleCreateGoogleSearchNetworkCampaignDisplaySelectDistribution()");
+        String campaignName = random.getRandomStringWithPrefix("CampaignNameT4", 5);
 
         String budget = "1.11";
         calendar.setTime(Calendar.getInstance().getTime());
@@ -318,7 +323,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
-        log.info("go to campaing settings and verify the settings ");
+        log.info("go to Campaign settings and verify the settings ");
         // Open the Campaign via clicking the link and go to Settings tab
 
         assertEquals("Campaign " + campaignName + " couldn't be opened ", true, campaignsPage.open(driver, campaignName));
@@ -333,23 +338,23 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
 
         assertEquals("Search Partners Distribution didn't match ", false, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.SearchPartners));
-        assertEquals("Diplay Partners Distribution didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.DisplaySelect));
+        assertEquals("Display Partners Distribution didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.DisplaySelect));
         assertEquals("KeywordMatching didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.KeywordMatching));
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info("End: T6SingleCreateGoogleShoppingCampaignNonUS()");
+        log.info("End: T4SingleCreateGoogleShoppingCampaignNonUS()");
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
-    public void T7SingleCreateGoogleSearchNetworkCampaignAllDistribution() throws Exception {
+    public void T5SingleCreateGoogleSearchNetworkCampaignAllDistribution() throws Exception {
 
         log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        log.info("Start: T7SingleCreateGoogleSearchNetworkCampaignAllDistribution()");
-        String campaignName = random.getRandomStringWithPrefix("CampaignNameT7", 5);
+        log.info("Start: T5SingleCreateGoogleSearchNetworkCampaignAllDistribution()");
+        String campaignName = random.getRandomStringWithPrefix("CampaignNameT5", 5);
 
         String budget = "1.11";
         calendar.setTime(Calendar.getInstance().getTime());
@@ -389,7 +394,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
-        log.info("go to campaing settings and verify the settings ");
+        log.info("go to Campaign settings and verify the settings ");
         // Open the Campaign via clicking the link and go to Settings tab
 
         assertEquals("Campaign " + campaignName + " couldn't be opened ", true, campaignsPage.open(driver, campaignName));
@@ -404,23 +409,23 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         assertEquals("Campaign End Date in the Settings Page don't match ", endDate, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.EndDate));
 
         assertEquals("Search Partners Distribution didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.SearchPartners));
-        assertEquals("Diplay Partners Distribution didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.DisplaySelect));
+        assertEquals("Display Partners Distribution didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.DisplaySelect));
         assertEquals("KeywordMatching didn't match ", true, campaignSettingsPage.isChecked(driver, CampaignSettingsPage.Checkbox.KeywordMatching));
 
         assertEquals("Campaign budget in the Settings Page don't match ", budget, campaignSettingsPage.getInfo(driver, CampaignSettingsPage.TextInput.Budget));
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info("End: T7SingleCreateGoogleSearchNetworkCampaignAllDistribution()");
+        log.info("End: T5SingleCreateGoogleSearchNetworkCampaignAllDistribution()");
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     @Test
-    public void T8SingleCreateGoogleDisplayNetworkOnlyCampaign() throws Exception {
+    public void T6SingleCreateGoogleDisplayNetworkOnlyCampaign() throws Exception {
 
         log.info("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        log.info("Start: T8SingleCreateGoogleDisplayNetworkOnlyCampaign()");
-        String campaignName = random.getRandomStringWithPrefix("CampaignNameT8", 5);
+        log.info("Start: T6SingleCreateGoogleDisplayNetworkOnlyCampaign()");
+        String campaignName = random.getRandomStringWithPrefix("CampaignNameT6", 5);
 
         String dailyBudget = "1." + random.getRandomInteger(2);
         calendar.setTime(Calendar.getInstance().getTime());
@@ -456,7 +461,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.select(driver, HomePage.Tab.Campaigns);
         campaignsPage.select(driver, CampaignsPage.DropDownMenu.Views, CampaignsPage.CAMPAIGN_VIEW);
-        log.info("go to campaing settings and verify the settings ");
+        log.info("go to Campaign settings and verify the settings ");
 
         // Open the Campaign via clicking the link and go to Settings tab
 
@@ -475,7 +480,7 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         homePage.click(driver, HomePage.Link.Admin);
 
-        log.info("Start: T8SingleCreateGoogleDisplayNetworkOnlyCampaign()");
+        log.info("Start: T6SingleCreateGoogleDisplayNetworkOnlyCampaign()");
         log.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 

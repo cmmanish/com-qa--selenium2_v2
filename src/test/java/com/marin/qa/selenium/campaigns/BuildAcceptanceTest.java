@@ -2,7 +2,7 @@ package com.marin.qa.selenium.campaigns;
 
 import com.marin.qa.selenium.WebdriverBaseClass;
 import com.marin.qa.selenium.common.MarinApp;
-import com.marin.qa.selenium.common.QaRandom;
+import com.marin.qa.selenium.Util.QaRandom;
 import com.marin.qa.selenium.pageObjects.pages.HomePage;
 import org.apache.log4j.Logger;
 import org.junit.*;
@@ -12,7 +12,6 @@ public class BuildAcceptanceTest extends WebdriverBaseClass {
 
     final private static Logger log = Logger.getLogger(BuildAcceptanceTest.class);
 
-    @Rule
     public static WebDriver driver = MarinApp.getApp();
     public QaRandom random = QaRandom.getInstance();
 

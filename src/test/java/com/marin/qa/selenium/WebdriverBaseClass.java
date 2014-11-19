@@ -47,6 +47,9 @@ public abstract class WebdriverBaseClass {
     
     public static void loginSuccessful(WebDriver driver) {
         log.info("<--------- Start Login Test --------->");
+        log.info("===========================================");
+        log.info("Now Running loginSuccessful Test");
+        log.info("===========================================");
         LoginPage loginPage = LoginPage.getInstance();
         loginPage.login(driver, LOGIN, PASSWORD);
         log.info("<--------- End Login Test --------->");
@@ -54,6 +57,9 @@ public abstract class WebdriverBaseClass {
 
     public static void clearAllPendingChanges(WebDriver driver) {
 
+        log.info("===========================================");
+        log.info("Now Running clearAllPendingChanges Test");
+        log.info("===========================================");
         HomePage homePage = HomePage.getInstance();
         homePage.click(driver, HomePage.Link.Admin);
         ActivityLogPage activityLogPage = ActivityLogPage.getInstance();
@@ -65,6 +71,9 @@ public abstract class WebdriverBaseClass {
 
     public static void logoutSuccessful(WebDriver driver){
 
+        log.info("===========================================");
+        log.info("Now Running logoutSuccessful Test");
+        log.info("===========================================");
         HomePage homePage = HomePage.getInstance();
         homePage.click(driver, HomePage.Link.Admin);
         homePage.click(driver, HomePage.Link.Logout);
@@ -72,6 +81,10 @@ public abstract class WebdriverBaseClass {
     }
 
     public void verifyAndPostCartop(WebDriver driver, String description) {
+
+        log.info("===========================================");
+        log.info("Now Running verifyAndPostCartop Test");
+        log.info("===========================================");
 
         log.info("go to activity log and verify the Cartops");
         HomePage homePage = HomePage.getInstance();

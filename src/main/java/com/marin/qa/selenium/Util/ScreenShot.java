@@ -1,4 +1,4 @@
-package com.marin.qa.selenium.common;
+package com.marin.qa.selenium.Util;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
