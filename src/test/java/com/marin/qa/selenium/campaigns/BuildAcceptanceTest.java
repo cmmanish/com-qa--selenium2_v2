@@ -11,9 +11,7 @@ import org.openqa.selenium.WebDriver;
 public class BuildAcceptanceTest extends WebdriverBaseClass {
 
     final private static Logger log = Logger.getLogger(BuildAcceptanceTest.class);
-
     public static WebDriver driver = MarinApp.getApp();
-    public QaRandom random = QaRandom.getInstance();
 
     public BuildAcceptanceTest() {
         log.info("-----------------------------------------");

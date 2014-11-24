@@ -1,6 +1,5 @@
 package com.marin.qa.selenium;
 
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -26,17 +25,18 @@ public abstract class WebdriverBaseClass {
     protected static final String UNICODE_DOT_SMALL = " \u00B7 ";
     protected static final String TAB = "\t";
     protected static final String END_OF_LINE = "\\n";
+/*
     protected static final String SLASH_N = "\n";
     protected static final Character slash_n = '\n';
     protected static final String SEMICOLON_SPACE = "; ";
     protected static final String COMMA_SPACE = ", ";
-    
+ */
     protected static final String[] CampaignPriority = {"Low", "Medium", "High"};
     
     protected static final String[] Countries = {"Brazil", "India", "Italy", "United States", "United Kingdom", "Canada"};
     
     protected static String LOGIN = "auto_orca@marinsoftware.com";
-    protected static String PASSWORD = "marin2007";
+    protected static String PASSWORD = "marin2007a";
    
     protected static Calendar calendar = Calendar.getInstance();
     protected SimpleDateFormat groupFormaterDate = new SimpleDateFormat("M/d/yy");
@@ -51,11 +51,16 @@ public abstract class WebdriverBaseClass {
         log.info("Now Running loginSuccessful Test");
         log.info("===========================================");
         LoginPage loginPage = LoginPage.getInstance();
-        loginPage.login(driver, LOGIN, PASSWORD);
+
+        if (!loginPage.login(driver, LOGIN, PASSWORD)){
+            log.info("Invalid username or password.");
+            driver.close();
+            System.exit(1);
+        }
         log.info("<--------- End Login Test --------->");
     }
 
-    public static void clearAllPendingChanges(WebDriver driver) {
+    public static void  clearAllPendingChanges(WebDriver driver) {
 
         log.info("===========================================");
         log.info("Now Running clearAllPendingChanges Test");

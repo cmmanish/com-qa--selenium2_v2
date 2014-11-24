@@ -1,5 +1,6 @@
 package com.marin.qa.selenium.pageObjects.pages;
 
+import com.marin.qa.selenium.Util.QaScreenshot;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,8 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.thoughtworks.selenium.SeleniumException;
+
+import java.io.IOException;
 
 public abstract class AbstractPage {
 
@@ -280,6 +283,12 @@ public abstract class AbstractPage {
             e.printStackTrace();
         }
 
+    }
+
+    public void takeScreenShot(WebDriver driver){
+
+        String path = QaScreenshot.getScreenShots().capture(driver);
+        log.info("Screenshot can be found at: " + path);
     }
 
 }

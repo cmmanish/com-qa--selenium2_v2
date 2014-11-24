@@ -87,8 +87,5 @@ public class QaProperties { // singleton
     public static boolean isSafari() {
         return "safari".equals(getBrowser());
     }
-    public static boolean isHtmlUnit() {
-        return "htmlUnit".equals(getBrowser());
-    }
 
 }

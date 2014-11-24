@@ -1,7 +1,7 @@
 package com.marin.qa.selenium.common;
 
 import com.marin.qa.selenium.Util.QaProperties;
-import com.marin.qa.selenium.Util.ScreenShot;
+import com.marin.qa.selenium.Util.QaScreenshot;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Platform;
@@ -17,7 +17,6 @@ public class MarinApp {
 
 	static Logger log = Logger.getLogger(MarinApp.class);
 
-	private ScreenShot screenShot = null;
 	public static WebDriver driver = null;
 	public static Properties props = null;
     public static int WIDTH = 1920;

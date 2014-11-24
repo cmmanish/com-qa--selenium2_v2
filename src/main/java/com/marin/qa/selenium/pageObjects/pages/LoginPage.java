@@ -8,7 +8,6 @@ public class LoginPage extends AbstractPage {
 
     private static LoginPage instance;
     public final Logger log = Logger.getLogger(LoginPage.class);
-    public static final String company = "\u00a9 Marin Software";
 
     /**
      * Private constructor prevents construction outside this class.
@@ -39,17 +38,21 @@ public class LoginPage extends AbstractPage {
 
         Company(".company", "Company"), 
         BuildNumber(".buildNumber", "Build Number"), 
-        Error(".bad", "Error");
+        Error(".bad", "Invalid username or password.");
 
         private String locator;
         private String description;
 
         private Label(String locator, String description) {
-            this.locator = locator;
+            this.locator = locator;this.description = description;
         }
 
         public String getLocator() {
             return this.locator;
+        }
+
+        public String getDescription() {
+            return this.description;
         }
 
         @Override
@@ -187,7 +190,9 @@ public class LoginPage extends AbstractPage {
             log.info("Press \"" + button.toString() + "\" Button in \"" + this.getClass().getSimpleName() + "\"");
         }
         else {
-            //element not present
+            log.info(button.getLocator()+ " is not present");
+            log.info("Taking Screenshots now ");
+            takeScreenShot(driver);
         }
 
         return instance;
@@ -206,7 +211,7 @@ public class LoginPage extends AbstractPage {
     public String getInfo(WebDriver driver, Label label) {
 
         // Get Label text
-        String query = "$('" + label.getLocator() + "').text()";
+        String query = "return $('" + label.getLocator() + "').text()";
         String retval = (String) ((JavascriptExecutor) driver).executeScript(query);
         return retval;
 
@@ -223,14 +228,22 @@ public class LoginPage extends AbstractPage {
      * @return void
      * 
      */
-    public void login(WebDriver driver, String email, String password) {
+    public boolean login(WebDriver driver, String email, String password) {
 
-        // Type email, password and click on "Sign in" button
+        log.info("Type email, password and click on \"Sign in\" button");
         waitForElementToBeAppear(driver, TextInput.Email.getLocator());
         waitForElementToBeAppear(driver, Button.Signin.getLocator());
         setText(driver, TextInput.Email, email);
         setText(driver, TextInput.Password, password);
         clickButton(driver, Button.Signin);
+
+        if ( (Label.Error.getDescription()).equalsIgnoreCase(getInfo(driver, Label.Error))) {
+            takeScreenShot(driver);
+            return false;
+        }
+        else
+            return true;
+
     }
 
 }
