@@ -39,9 +39,7 @@ public abstract class WebdriverBaseClass {
     protected static String PASSWORD = "marin2007a";
    
     protected static Calendar calendar = Calendar.getInstance();
-    protected SimpleDateFormat groupFormaterDate = new SimpleDateFormat("M/d/yy");
-    protected SimpleDateFormat groupFormaterTime = new SimpleDateFormat("h:mm a");
-
+    protected SimpleDateFormat dateFormatter = new SimpleDateFormat("M/d/yy");
 
     protected static String pageLoadError = "Problem loading page";
     

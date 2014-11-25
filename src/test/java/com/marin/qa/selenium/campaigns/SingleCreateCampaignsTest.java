@@ -76,9 +76,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
 
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
 
         HomePage homePage = HomePage.getInstance();
         homePage.select(driver, HomePage.Tab.Campaigns);
@@ -145,9 +145,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
 
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
 
         HomePage homePage = HomePage.getInstance();
         homePage.select(driver, HomePage.Tab.Campaigns);
@@ -214,9 +214,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         String budget = "1.11";
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
 
         HomePage homePage = HomePage.getInstance();
@@ -287,9 +287,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         String budget = "1.11";
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
 
         HomePage homePage = HomePage.getInstance();
@@ -358,9 +358,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         String budget = "1.11";
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
 
         HomePage homePage = HomePage.getInstance();
@@ -429,9 +429,9 @@ public class SingleCreateCampaignsTest extends WebdriverBaseClass {
 
         String dailyBudget = "1." + random.getRandomInteger(2);
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
         String singleCreateCampaign = "Create: Google Campaign: " + campaignName + ".";
 
         HomePage homePage = HomePage.getInstance();

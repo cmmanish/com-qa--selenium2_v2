@@ -115,9 +115,9 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String bulkCreateCampaign = "Bulk Create: Google Campaign: " + campaignName + ".";
 
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
 
         String headers = "Account\tCampaign\tStatus\tStart Date\tCampaign End Date\tDaily Budget\tNetwork\tMerchant ID\tCountry of Sale\tCampaign Priority\tShopping Channels\\n";
 
@@ -177,9 +177,9 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String bulkCreateCampaign = "Bulk Create: Google Campaign: " + campaignName + ".";
 
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
 
         String headers = "Account\tCampaign\tStatus\tStart Date\tCampaign End Date\tDaily Budget\t" + "Network\tMerchant ID\tCountry of Sale\tCampaign Priority\tShopping Channels\\n";
 
@@ -237,9 +237,9 @@ public class BulkAddCampaignsTest extends WebdriverBaseClass {
         String bulkCreateCampaign = "Bulk Create: Google Campaign: " + campaignName + ".";
 
         calendar.setTime(Calendar.getInstance().getTime());
-        final String startDate = groupFormaterDate.format(calendar.getTime());
+        final String startDate = dateFormatter.format(calendar.getTime());
         calendar.add(Calendar.MONTH, 1);
-        final String endDate = groupFormaterDate.format(calendar.getTime());
+        final String endDate = dateFormatter.format(calendar.getTime());
 
         String headers = "Account\tCampaign\tStatus\tStart Date\tCampaign End Date\tDaily Budget\tNetwork\\n";
 
